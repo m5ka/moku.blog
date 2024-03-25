@@ -1,8 +1,10 @@
 <article>
     {% if post.image %}
-        <a href="{{ post.image.url }}" target="_blank" rel="noreferrer noopener" class="image">
-            <img src="{{ post.image.url }}">
-        </a>
+        <div class="image">
+            <a href="{{ post.image.url }}" target="_blank" rel="noreferrer noopener" class="image">
+                <img src="{{ post.image.url }}" alt="image of {{ post.food }} by @{{ post.created_by.username }}">
+            </a>
+        </div>
     {% endif %}
     <div class="emoji">{{ post.emoji }}</div>
     <div class="body">
