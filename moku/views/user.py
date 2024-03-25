@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.generic import FormView, TemplateView
@@ -7,7 +8,7 @@ from moku.forms.user import ProfileForm, UserForm
 from moku.models.user import User
 
 
-class EditProfileView(FormView):
+class EditProfileView(LoginRequiredMixin, FormView):
     template_name = "moku/profile/edit.jinja"
     form_class = ProfileForm
 
@@ -40,3 +41,8 @@ class SignupView(FormView):
         form.save()
         messages.success(self.request, _("that's it! just log in, and you're ready to go."))
         return redirect("login")
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect("feed")
+        return super().get(request, *args, **kwargs)
