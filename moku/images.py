@@ -1,11 +1,12 @@
 from io import BytesIO
 
 from django.core.files import File
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 def _convert_image_to_webp(image_file):
     image = Image.open(image_file)
+    ImageOps.exif_transpose(image, in_place=True)
     image.convert("RGB")
     image.thumbnail((486, 486))
     thumb_io = BytesIO()
