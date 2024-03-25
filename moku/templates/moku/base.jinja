@@ -40,5 +40,15 @@
             </ul>
         {% endif %}
         {% block content %}{% endblock content %}
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="{{ url('changelog') }}">changelog</a></li>
+                    <li><a href="{{ url('terms') }}">terms of use</a></li>
+                    <li><a href="{{ url('privacy') }}">privacy policy</a></li>
+                    <li><a href="https://ko-fi.com/mokublog" target="_blank" rel="noreferrer">donate❤️</a></li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>

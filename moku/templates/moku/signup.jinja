@@ -30,6 +30,18 @@
                 {{ form.captcha }}
                 <span class="help">{% trans %}please let us know you're not a robot. i'm scared of robots!{% endtrans %}</span>
             </div>
+            <div class="field">
+                <div class="checkbox">
+                    {{ form.check }}
+                    <label for="id_check">
+                        {% with terms_url=url('terms'), privacy_url=url('privacy') %}
+                            {% trans %}
+                                i agree to the <a href="{{ terms_url }}" target="_blank" rel="noreferrer">terms of use</a> and <a href="{{ privacy_url }}" target="_blank" rel="noreferrer">privacy policy</a>.
+                            {% endtrans %}
+                        {% endwith %}
+                    </label>
+                </div>
+            </div>
             <button type="submit">{% trans %}sign up!{% endtrans %}</button>
         </form>
     </div>

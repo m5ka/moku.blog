@@ -21,6 +21,7 @@ from django.urls import include, path
 
 from moku.views.auth import LoginView, LogoutView
 from moku.views.post import FeedView
+from moku.views.static import ChangelogView, PrivacyView, TermsView
 from moku.views.user import EditProfileView, EditSettingsView, ProfileView, SignupView
 
 urlpatterns = [
@@ -31,6 +32,9 @@ urlpatterns = [
     path("signup", SignupView.as_view(), name="signup"),
     path("profile", EditProfileView.as_view(), name="profile.edit"),
     path("settings", EditSettingsView.as_view(), name="settings"),
+    path("changelog", ChangelogView.as_view(), name="changelog"),
+    path("privacy", PrivacyView.as_view(), name="privacy"),
+    path("terms", TermsView.as_view(), name="terms"),
     path("user/<str:username>", ProfileView.as_view(), name="profile"),
 ]
 

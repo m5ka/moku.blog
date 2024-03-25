@@ -150,6 +150,13 @@ form .field {
     row-gap: .4rem;
 }
 
+form .checkbox {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: flex-start;
+    column-gap: .8rem;
+}
+
 form .field .help {
     color: var(--charcoal);
     font-size: 1.4rem;
@@ -315,6 +322,58 @@ header nav ul {
     margin-block-start: 1rem;
     padding-inline-start: 3.4rem;
     border-left: 2px solid var(--tangerine);
+}
+
+.block {
+    max-width: 528px;
+    display: grid;
+    row-gap: .8rem;
+}
+
+.block h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.block h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-block-start: 1.2rem;
+}
+
+.block ul {
+    padding-inline-start: 3.2rem;
+    list-style: disc;
+    display: grid;
+    row-gap: .4rem;
+}
+
+.block strong {
+    font-weight: bold;
+}
+
+.block em {
+    font-style: italic;
+}
+
+footer {
+    margin-block-start: 1.8rem;
+}
+
+footer nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1.2rem;
+}
+
+footer nav ul li a {
+    font-size: 1.4rem;
+    color: var(--charcoal);
+}
+
+footer nav ul li a:hover {
+    color: var(--orange);
 }
 
 @media(min-width: 768px) {

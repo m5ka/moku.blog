@@ -9,6 +9,7 @@ from moku.models.user import User, UserSettings
 
 class UserForm(UserCreationForm):
     captcha = ReCaptchaField(required=True)
+    check = forms.BooleanField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -24,7 +25,12 @@ class UserForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["captcha"].error_messages = {"required": _("make sure you've ticked the captcha.")}
+        self.fields["captcha"].error_messages = {
+            "required": _("make sure you've ticked the captcha."),
+        }
+        self.fields["check"].error_messages = {
+            "required": _("you must agree to the terms of use and privacy policy."),
+        }
 
 
 class UserSettingsForm(forms.ModelForm):
