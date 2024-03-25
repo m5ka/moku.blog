@@ -3,20 +3,28 @@
 {% block content %}
     <div class="content">
         <p class="mb"><a href="{{ url('profile', username=request.user.username) }}">👈 {% trans %}back to my profile{% endtrans %}</a></p>
-        <form action="" method="POST" class="auth">
+        <form action="" method="POST" enctype="multipart/form-data" class="auth">
             {% include "moku/snippets/form_errors.jinja" %}
             {% csrf_token %}
             <div class="field">
+                <label for="id_avatar">{{ form.avatar.label }}</label>
+                <div>{{ form.avatar }}</div>
+                <span class="help">{{ form.avatar.help_text }}</span>
+            </div>
+            <div class="field">
                 <label for="id_pronouns">{{ form.pronouns.label }}</label>
                 <input type="text" name="pronouns" id="id_pronouns" value="{{ form.pronouns.value() or "" }}">
+                <span class="help">{{ form.pronouns.help_text }}</span>
             </div>
             <div class="field">
                 <label for="id_location">{{ form.location.label }}</label>
                 <input type="text" name="location" id="id_location" value="{{ form.location.value() or "" }}">
+                <span class="help">{{ form.location.help_text }}</span>
             </div>
             <div class="field">
                 <label for="id_bio">{{ form.bio.label }}</label>
                 <textarea name="bio" id="id_bio">{{ form.bio.value() or "" }}</textarea>
+                <span class="help">{{ form.bio.help_text }}</span>
             </div>
             <button type="submit">update!</button>
         </form>

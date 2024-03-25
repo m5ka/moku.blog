@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from django.views.generic import FormView
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
+from moku.images import process_post_image
 from moku.models.post import Post
 from moku.forms.post import PostForm
 
@@ -17,6 +18,8 @@ class FeedView(FormView):
         if not self.request.user.is_authenticated:
             raise PermissionDenied
         form.instance.created_by = self.request.user
+        if "image" in form.changed_data and form.instance.image is not None:
+            form.instance.image = process_post_image(form.instance.image)
         form.save()
         messages.success(self.request, _("your post was made!"))
         return redirect("feed")

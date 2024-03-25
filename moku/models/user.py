@@ -6,6 +6,10 @@ from django.urls import reverse
 from moku.validators import validate_username_regex, validate_username_length
 
 
+def user_avatar_filename(instance, _):
+    return f"avatars/{instance.username}.webp"
+
+
 class User(AbstractUser):
     username = models.CharField(
         verbose_name=_("username"),
@@ -47,6 +51,12 @@ class User(AbstractUser):
         verbose_name=_("about me"),
         blank=True,
         help_text=_("write something about yourself!"),
+    )
+    avatar = models.ImageField(
+        verbose_name=_("avatar"),
+        blank=True,
+        upload_to=user_avatar_filename,
+        help_text=_("a little picture to show up on your profile."),
     )
     last_seen_at = models.DateTimeField(
         verbose_name=_("last seen at"),

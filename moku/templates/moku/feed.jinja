@@ -4,7 +4,7 @@
 <div class="grid-content">
     <aside>
         {% if request.user.is_authenticated %}
-            <form action="" method="POST" enctype="{% if form.is_multipart %}multipart/form-data{% else %}application/x-www-form-urlencoded{% endif %}">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% include "moku/snippets/form_errors.jinja" %}
                 {% csrf_token %}
                 <div class="emoji-picker">

@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.generic import FormView, TemplateView
 
+from moku.images import process_avatar_image
 from moku.forms.user import ProfileForm, UserForm
 from moku.models.user import User
 
@@ -13,6 +14,8 @@ class EditProfileView(LoginRequiredMixin, FormView):
     form_class = ProfileForm
 
     def form_valid(self, form):
+        if "avatar" in form.changed_data and form.instance.avatar is not None:
+            form.instance.avatar = process_avatar_image(form.instance.avatar)
         form.save()
         messages.success(self.request, _("profile updated successfully!"))
         return redirect("profile", username=form.instance.username)

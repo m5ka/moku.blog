@@ -87,6 +87,14 @@ a:hover, button.logout:hover {
     color: var(--orange);
 }
 
+.avatar {
+    border-radius: 8px;
+}
+
+aside .avatar {
+    max-width: 100%;
+}
+
 dl {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -148,7 +156,7 @@ form .field .help {
     font-size: 1.4rem;
 }
 
-form input,
+form input:not([name$="-clear"]),
 form select {
     width: 100%;
 }

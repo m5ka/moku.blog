@@ -71,7 +71,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
             "filters": {
-                "unemoji": "moku.utils.unemoji",
+                "unemoji": "moku.filters.unemoji",
             },
             "policies": {"ext.i18n.trimmed": True},
         },

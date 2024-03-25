@@ -4,14 +4,11 @@ from django.utils.translation import gettext_lazy as _
 from shortuuid.django_fields import ShortUUIDField
 
 from moku.constants import Verbs
-from moku.utils import process_image
 from moku.validators import validate_emoji
 
 
-def post_image_filename(instance, filename):
-    fn = filename.split(".")
-    ext = "png" if len(fn) < 2 else fn[-1]
-    return f"posts/{instance.created_by.username}__{instance.uuid}.{ext}"
+def post_image_filename(instance, _):
+    return f"posts/{instance.created_by.username}__{instance.uuid}.webp"
 
 
 class Post(models.Model):
@@ -62,11 +59,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.uuid
-
-    def save(self, *args, **kwargs):
-        if not self.id and self.image:
-            self.image = process_image(self.image)
-        super().save(*args, **kwargs)
 
     @property
     def text(self):

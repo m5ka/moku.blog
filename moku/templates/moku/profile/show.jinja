@@ -5,6 +5,11 @@
         <aside class="profile">
             <h2>@{{ profile.username }}</h2>
             <dl>
+                {% if profile.avatar %}
+                    <div class="double">
+                        <img src="{{ profile.avatar.url }}" alt="@{{ profile.username }}'s avatar" class="avatar">
+                    </div>
+                {% endif %}
                 <div>
                     <dt>{% trans %}pronouns{% endtrans %}</dt>
                     <dd>{{ profile.pronouns or "not set" }}</dd>
