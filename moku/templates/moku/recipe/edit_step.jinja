@@ -1,0 +1,16 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content">
+        <form action="" method="POST" class="auth">
+            {% include "moku/snippets/form_errors.jinja" %}
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_instructions">{% trans %}instructions{% endtrans %}</label>
+                {{ form.instructions }}
+                <span class="help">{{ form.instructions.help_text }}</span>
+            </div>
+            <button type="submit">{% trans %}update!{% endtrans %}</button>
+        </form>
+    </div>
+{% endblock content %}

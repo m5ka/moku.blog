@@ -10,6 +10,15 @@
     <div class="body">
         <p class="food">{{ post.text|safe }}</p>
         <p class="metadata">{{ post.created_at|naturaltime }}</p>
-        <!-- <details class="recipe"><summary>recipe</summary><ol>...</ol></details> -->
+        {% if post.recipe %}
+            <details class="recipe">
+                <summary>recipe</summary>
+                <ol>
+                    {% for step in post.recipe.steps.all() %}
+                        <li>{{ step.instructions }}</li>
+                    {% endfor %}
+                </ol>
+            </details>
+        {% endif %}
     </div>
 </article>

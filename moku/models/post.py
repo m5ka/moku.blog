@@ -4,11 +4,21 @@ from django.utils.translation import gettext_lazy as _
 from shortuuid.django_fields import ShortUUIDField
 
 from moku.constants import Verbs
+from moku.models.recipe import RecipeStep
 from moku.validators import validate_emoji
 
 
 def post_image_filename(instance, _):
     return f"posts/{instance.created_by.username}__{instance.uuid}.webp"
+
+
+class PostManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related("created_by") \
+            .prefetch_related(
+                models.Prefetch("recipe__steps", queryset=RecipeStep.objects.order_by("order"))
+            ) \
+            .order_by("-created_at")
 
 
 class Post(models.Model):
@@ -41,6 +51,15 @@ class Post(models.Model):
         upload_to=post_image_filename,
         help_text=_("here you can upload a picture of what you ate!"),
     )
+    recipe = models.ForeignKey(
+        "Recipe",
+        verbose_name=_("recipe"),
+        blank=True,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        help_text=_("the recipe for what you ate, if you have one."),
+    )
     created_by = models.ForeignKey(
         "User",
         related_name="posts",
@@ -56,6 +75,8 @@ class Post(models.Model):
         auto_now=True,
         help_text=_("when this post was last updated."),
     )
+
+    objects = PostManager()
 
     def __str__(self):
         return f"{self.text} on {self.created_at}"

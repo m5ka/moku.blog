@@ -39,6 +39,14 @@ body {
     margin-block-end: 1.6rem;
 }
 
+.small {
+    font-size: 1.4rem;
+}
+
+.subtle {
+    color: var(--charcoal);
+}
+
 .messages {
     margin-block-end: 1.6rem;
     display: grid;
@@ -148,6 +156,12 @@ form.auth {
 form .field {
     display: grid;
     row-gap: .4rem;
+}
+
+form .field .field-button {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: .8rem;
 }
 
 form .checkbox {
@@ -341,11 +355,19 @@ header nav ul {
     margin-block-start: 1.2rem;
 }
 
-.block ul {
+.block ul,
+.block ol {
     padding-inline-start: 3.2rem;
-    list-style: disc;
     display: grid;
     row-gap: .4rem;
+}
+
+.block ul {
+    list-style: disc;
+}
+
+.block ol {
+    list-style: decimal;
 }
 
 .block strong {

@@ -39,6 +39,11 @@
                     <span class="help" id="help_verb">{{ form.verb.help_text }}</span>
                 </div>
                 <div class="field">
+                    <label for="id_recipe">{{ form.recipe.label }}</label>
+                    {{ form.recipe }}
+                    <span class="help">{{ form.recipe.help_text }}</span>
+                </div>
+                <div class="field">
                     <label for="id_image">{{ form.image.label }}</label>
                     {{ form.image }}
                     <span class="help" id="help_image">{{ form.image.help_text }}</span>

@@ -14,7 +14,8 @@
                 <ul>
                     {% if request.user.is_authenticated %}
                         <li><a href="{{ url('feed') }}">{% trans %}feed{% endtrans %}</a></li>
-                        <li><a href="{{ url('profile', username=request.user.username) }}">{% trans %}my profile{% endtrans %}</a></li>
+                        <li><a href="{{ url('recipe.index') }}">{% trans %}recipes{% endtrans %}</a></li>
+                        <li><a href="{{ url('profile', username=request.user.username) }}">{% trans %}profile{% endtrans %}</a></li>
                         <li><a href="{{ url('settings') }}">{% trans %}settings{% endtrans %}</a></li>
                         <li>
                             <form action="{{ url('logout') }}" method="POST" class="logout">

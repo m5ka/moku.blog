@@ -1,0 +1,43 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content block">
+        {% if request.user.id == recipe.created_by.id %}
+            <p class="mb">🗑️ <a href="{{ url('recipe.delete', uuid=recipe.uuid) }}">{% trans %}delete recipe{% endtrans %}</a></p>
+        {% endif %}
+        <h2>{{ recipe.title }}</h2>
+        <ol>
+            {% set count = recipe.steps.count() %}
+            {% for step in recipe.steps.all() %}
+                <li>
+                    {{ step.instructions }}
+                    {% if request.user.is_authenticated and request.user.id == recipe.created_by.id %}
+                        <span class="small subtle">
+                            [<a href="{{ url('step.edit', uuid=recipe.uuid, step=step.uuid) }}">{% trans %}edit{% endtrans %}</a>]
+                            {% if loop.index0 == (count-1) %}
+                                [<a href="{{ url('step.delete', uuid=recipe.uuid, step=step.uuid) }}">{% trans %}delete{% endtrans %}</a>]
+                            {% endif %}
+                        </span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            {% if request.user.is_authenticated and request.user.id == recipe.created_by.id %}
+                {% if count < 16 %}
+                    <li>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label for="id_instructions">👉 <strong>{% trans %}add a step{% endtrans %}</strong></label>
+                                <div class="field-button">
+                                    {{ form.instructions }}
+                                    <button type="submit">{% trans %}add!{% endtrans %}</button>
+                                </div>
+                                <span class="help">{{ form.instructions.help_text }}</span>
+                            </div>
+                        </form>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ol>
+    </div>
+{% endblock content %}

@@ -27,7 +27,7 @@ class FeedView(FormView):
     def get_context_data(self, **kwargs):
         context = {
             **super().get_context_data(**kwargs),
-            "posts": Post.objects.order_by("-created_at").all()[:128]
+            "posts": Post.objects.all()[:128]
         }
         if self.request.user.is_authenticated:
             return self.get_authenticated_context_data(context)

@@ -1,0 +1,16 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content block">
+        <p class="mb">👏 <a href="{{ url('recipe.new') }}">new recipe</a></p>
+        <h2>your recipes</h2>
+        <ul>
+            {% if not recipes %}
+                <li>{% trans %}no recipes yet... 😴{% endtrans %}</li>
+            {% endif %}
+            {% for recipe in recipes %}
+                <li><a href="{{ recipe.get_absolute_url() }}">{{ recipe.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

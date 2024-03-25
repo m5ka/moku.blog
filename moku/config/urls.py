@@ -21,6 +21,14 @@ from django.urls import include, path
 
 from moku.views.auth import LoginView, LogoutView
 from moku.views.post import FeedView
+from moku.views.recipe import (
+    DeleteRecipeView,
+    DeleteStepView,
+    EditStepView,
+    IndexRecipeView,
+    NewRecipeView,
+    ShowRecipeView,
+)
 from moku.views.static import ChangelogView, PrivacyView, TermsView
 from moku.views.user import EditProfileView, EditSettingsView, ProfileView, SignupView
 
@@ -36,6 +44,12 @@ urlpatterns = [
     path("privacy", PrivacyView.as_view(), name="privacy"),
     path("terms", TermsView.as_view(), name="terms"),
     path("user/<str:username>", ProfileView.as_view(), name="profile"),
+    path("recipes", IndexRecipeView.as_view(), name="recipe.index"),
+    path("recipes/new", NewRecipeView.as_view(), name="recipe.new"),
+    path("recipes/<str:uuid>", ShowRecipeView.as_view(), name="recipe.show"),
+    path("recipes/<str:uuid>/delete", DeleteRecipeView.as_view(), name="recipe.delete"),
+    path("recipes/<str:uuid>/<str:step>", EditStepView.as_view(), name="step.edit"),
+    path("recipes/<str:uuid>/<str:step>/delete", DeleteStepView.as_view(), name="step.delete"),
 ]
 
 if settings.DEBUG_TOOLBAR:
