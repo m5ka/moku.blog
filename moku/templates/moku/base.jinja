@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>moku.blog</title>
+        <link rel="stylesheet" href="{{ static('css/reset.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ static('css/moku.css') }}" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h1>moku.blog</h1>
+            <nav>
+                <ul>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{{ url('feed') }}">{% trans %}feed{% endtrans %}</a></li>
+                        <li><a href="{{ url('profile', username=request.user.username) }}">{% trans %}my profile{% endtrans %}</a></li>
+                        <li>
+                            <form action="{{ url('logout') }}" method="POST" class="logout">
+                                {% csrf_token %}
+                                <button class="logout" type="submit">{% trans %}log out{% endtrans %}</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ url('login') }}">{% trans %}log in{% endtrans %}</a></li>
+                        <li><a href="{{ url('signup') }}">{% trans %}sign up{% endtrans %}</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        {% block content %}{% endblock content %}
+    </body>
+</html>

@@ -1,0 +1,298 @@
+:root {
+    --tangerine: #F7A278;
+    --orange: #c94c10;
+    --champagne: #FDE4D8;
+    --dusty-champagne: #EFC6B8;
+    --charcoal: #626262;
+
+    --emoji-picker-rounding: 6px;
+    --image-max-size: 324px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.5;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    background: var(--champagne);
+    font-size: 1.6rem;
+    line-height: 1.4;
+    max-width: 768px;
+    margin-inline: auto;
+    padding: 4rem 1.2rem 2.4rem 1.2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.mt {
+    margin-block-start: 1.6rem;
+}
+
+.mb {
+    margin-block-end: 1.6rem;
+}
+
+button.logout {
+    border: none;
+    outline: none;
+    background: none;
+    display: inline;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+a, button.logout {
+    color: var(--orange);
+    font-weight: bold;
+    text-decoration: none;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 2px;
+}
+
+a:hover, button.logout:hover {
+    text-decoration: wavy underline;
+}
+
+.profile h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-block-end: 1.2rem;
+    color: var(--orange);
+}
+
+dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1.2rem;
+    column-gap: 1.8rem;
+}
+
+dl > div {
+    display: grid;
+}
+
+dl dt {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--charcoal);
+}
+
+dl > .double {
+    grid-column: 1 / span 2;
+}
+
+form .errors {
+    font-size: 1.5rem;
+    display: grid;
+    margin-block-end: .8rem;
+}
+
+form .errors::before {
+    content: "fix these and we're good to go:";
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    margin-block-end: .4rem;
+}
+
+form .errors li::before {
+    content: "❌ ";
+}
+
+form .errors li {
+    text-transform: lowercase;
+}
+
+form:not(.logout) {
+    display: grid;
+    row-gap: .8rem;
+}
+
+form.auth {
+    max-width: 378px;
+}
+
+form .field {
+    display: grid;
+    row-gap: .4rem;
+}
+
+form .field .help {
+    color: var(--charcoal);
+    font-size: 1.4rem;
+}
+
+form input,
+form select {
+    width: 100%;
+}
+
+form textarea {
+    height: 6ch;
+    resize: vertical;
+}
+
+form input[type=text],
+form input[type=password],
+form input[type=email],
+form textarea,
+form select {
+    padding: .2rem;
+    font-size: 1.6rem;
+    border: 1px solid var(--charcoal);
+    border-radius: 3px;
+    background: var(--champagne);
+}
+
+form input[type=text]:focus,
+form input[type=password]:focus,
+form input[type=email]:focus,
+form textarea:focus,
+form select:focus {
+    background: white;
+    outline: 2px solid var(--tangerine);
+}
+
+form .emoji-picker {
+    display: grid;
+    row-gap: .2rem;
+}
+
+form .emoji-picker details:first-of-type summary {
+    border-top-right-radius: var(--emoji-picker-rounding);
+    border-top-left-radius: var(--emoji-picker-rounding);
+}
+
+form .emoji-picker details:last-of-type:not([open]) summary {
+    border-bottom-right-radius: var(--emoji-picker-rounding);
+    border-bottom-left-radius: var(--emoji-picker-rounding);
+}
+
+form .emoji-picker details summary {
+    background: var(--dusty-champagne);
+    font-size: 1.4rem;
+    padding: .4rem .6rem;
+    user-select: none;
+    cursor: default;
+}
+
+form .emoji-picker ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: .2rem;
+    row-gap: .2rem;
+}
+
+form .emoji-picker ul li label {
+    padding: .3rem;
+}
+
+form .emoji-picker ul li input[type=radio] {
+    display: none;
+}
+
+form .emoji-picker ul li input[type=radio]:checked + label {
+    outline: 3px solid var(--tangerine);
+    border-radius: 50%;
+}
+
+form button[type=submit]:not(.logout) {
+    padding: .4rem .6rem;
+    font-size: 1.5rem;
+    background: var(--tangerine);
+    border: 1px solid var(--orange);
+    outline: none;
+    border-radius: 4px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2.4rem;
+    align-items: center;
+    margin-block-end: 2.4rem;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 1.2rem;
+}
+
+.grid-content {
+    display: grid;
+    grid-template-columns: 214px 1fr;
+    column-gap: 2.4rem;
+    align-items: flex-start;
+}
+
+.grid-content main {
+    display: grid;
+    row-gap: 1.8rem;
+}
+
+.grid-content main article {
+    padding: .8rem 1.8rem;
+    border-left: 4px solid var(--tangerine);
+    word-break: break-all;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.2rem;
+}
+
+.grid-content main article .image {
+    grid-column: 1 / span 2;
+    margin-block-end: 1rem;
+}
+
+.grid-content main article .image img {
+    max-width: var(--image-max-size);
+    max-height: var(--image-max-size);
+    border-radius: 8px;
+}
+
+.grid-content main article .emoji {
+    font-size: 2rem;
+    padding-top: .8rem;
+}
+
+.grid-content main article .body {
+    display: grid;
+    row-gap: .2rem;
+}
+
+.grid-content main article .body .metadata {
+    font-size: 1.4rem;
+    color: var(--charcoal);
+}
+
+.grid-content main article .body .recipe {
+    margin-block-start: .4rem;
+}
+
+.grid-content main article .body .recipe summary {
+    font-size: 1.4rem;
+    cursor: default;
+    user-select: none;
+}
+
+.grid-content main article .body .recipe ol {
+    font-size: 1.5rem;
+    list-style: decimal;
+    margin-block-start: 1rem;
+    padding-inline-start: 3.4rem;
+    border-left: 2px solid var(--tangerine);
+}

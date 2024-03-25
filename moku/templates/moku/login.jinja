@@ -1,0 +1,19 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content">
+        <form action="" method="POST" class="auth">
+            {% include "moku/snippets/form_errors.jinja" %}
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_username">{% trans %}username{% endtrans %}</label>
+                <input type="text" name="username" id="id_username">
+            </div>
+            <div class="field">
+                <label for="id_password">{% trans %}password{% endtrans %}</label>
+                <input type="password" name="password" id="id_password">
+            </div>
+            <button type="submit">{% trans %}log in{% endtrans %}</button>
+        </form>
+    </div>
+{% endblock content %}

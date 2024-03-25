@@ -1,0 +1,36 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content">
+        <form action="" method="POST" class="auth">
+            {% include "moku/snippets/form_errors.jinja" %}
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_username">{{ form.username.label }}</label>
+                <input type="text" name="username" id="id_username" value="{{ form.username.value() or "" }}" required>
+                <span class="help">{{ form.username.help_text }}</span>
+            </div>
+            <div class="field">
+                <label for="id_email">{{ form.email.label }}</label>
+                <input type="email" name="email" id="id_email" value="{{ form.username.value() or "" }}" required>
+                <span class="help">{{ form.email.help_text }}</span>
+            </div>
+            <div class="field">
+                <label for="id_password1">{{ form.password1.label }}</label>
+                <input type="password" name="password1" id="id_password1" value="{{ form.username.value() or "" }}" required>
+                <span class="help">{{ form.password1.help_text|safe }}</span>
+            </div>
+            <div class="field">
+                <label for="id_password2">{{ form.password2.label }}</label>
+                <input type="password" name="password2" id="id_password2" value="{{ form.username.value() or "" }}" required>
+                <span class="help">{{ form.password2.help_text }}</span>
+            </div>
+            <div class="field">
+                <label for="id_captcha">captcha</label>
+                {{ form.captcha }}
+                <span class="help">{% trans %}please let us know you're not a robot. i'm scared of robots!{% endtrans %}</span>
+            </div>
+            <button type="submit">{% trans %}sign up!{% endtrans %}</button>
+        </form>
+    </div>
+{% endblock content %}

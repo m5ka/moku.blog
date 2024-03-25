@@ -1,0 +1,24 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content">
+        <p class="mb"><a href="{{ url('profile', username=request.user.username) }}">👈 {% trans %}back to my profile{% endtrans %}</a></p>
+        <form action="" method="POST" class="auth">
+            {% include "moku/snippets/form_errors.jinja" %}
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_pronouns">{{ form.pronouns.label }}</label>
+                <input type="text" name="pronouns" id="id_pronouns" value="{{ form.pronouns.value() or "" }}">
+            </div>
+            <div class="field">
+                <label for="id_location">{{ form.location.label }}</label>
+                <input type="text" name="location" id="id_location" value="{{ form.location.value() or "" }}">
+            </div>
+            <div class="field">
+                <label for="id_bio">{{ form.bio.label }}</label>
+                <textarea name="bio" id="id_bio">{{ form.bio.value() or "" }}</textarea>
+            </div>
+            <button type="submit">update!</button>
+        </form>
+    </div>
+{% endblock content %}
