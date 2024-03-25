@@ -5,9 +5,10 @@ from django.utils.translation import gettext as _
 from django.views.generic import FormView
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
+from moku.forms.post import PostForm
 from moku.images import process_post_image
 from moku.models.post import Post
-from moku.forms.post import PostForm
+from moku.models.recipe import Recipe
 
 
 class FeedView(FormView):
@@ -17,6 +18,9 @@ class FeedView(FormView):
     def form_valid(self, form):
         if not self.request.user.is_authenticated:
             raise PermissionDenied
+        if form.instance.recipe and form.instance.recipe.created_by.id != self.request.user.id:
+            messages.error(self.request, _("you can't add someone else's recipe to your post!"))
+            return redirect("feed")
         form.instance.created_by = self.request.user
         if "image" in form.changed_data and form.instance.image is not None:
             form.instance.image = process_post_image(form.instance.image)
@@ -42,3 +46,8 @@ class FeedView(FormView):
                 for verb in Verbs.CHOICES
             )
         }
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["recipe"].queryset = Recipe.objects.filter(created_by=self.request.user)
+        return form
