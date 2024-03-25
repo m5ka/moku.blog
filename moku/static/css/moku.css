@@ -308,7 +308,7 @@ header nav ul {
 }
 
 .grid-content main article .image img {
-    max-width: var(--image-max-size);
+    max-width: 100%;
     max-height: var(--image-max-size);
     border-radius: 8px;
 }
@@ -426,5 +426,9 @@ footer nav ul li a:hover {
         column-gap: 2.4rem;
         row-gap: 0;
         align-items: flex-start;
+    }
+
+    .grid-content main article .image img {
+        max-width: var(--image-max-size);
     }
 }
