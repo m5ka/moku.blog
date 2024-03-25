@@ -39,6 +39,25 @@ body {
     margin-block-end: 1.6rem;
 }
 
+.messages {
+    margin-block-end: 1.6rem;
+    display: grid;
+    row-gap: .8rem;
+    font-size: 1.5rem;
+}
+
+.messages li.success::before {
+    content: "✅ ";
+}
+
+.messages li.error::before {
+    content: "❌ ";
+}
+
+.messages li.info::before {
+    content: "ℹ️ ";
+}
+
 button.logout {
     border: none;
     outline: none;

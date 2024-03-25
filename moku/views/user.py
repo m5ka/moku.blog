@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.shortcuts import redirect
+from django.utils.translation import gettext as _
 from django.views.generic import FormView, TemplateView
-from django.urls import reverse
 
 from moku.forms.user import ProfileForm, UserForm
 from moku.models.user import User
@@ -12,6 +13,7 @@ class EditProfileView(FormView):
 
     def form_valid(self, form):
         form.save()
+        messages.success(self.request, _("profile updated successfully!"))
         return redirect("profile", username=form.instance.username)
 
     def get_form(self):
@@ -34,5 +36,7 @@ class SignupView(FormView):
     template_name = "moku/signup.jinja"
     form_class = UserForm
 
-    def get_success_url(self):
-        return reverse("feed")
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, _("that's it! just log in, and you're ready to go."))
+        return redirect("login")

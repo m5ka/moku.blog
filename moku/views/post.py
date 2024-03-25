@@ -1,5 +1,7 @@
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
+from django.utils.translation import gettext as _
 from django.views.generic import FormView
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
@@ -15,7 +17,8 @@ class FeedView(FormView):
         if not self.request.user.is_authenticated:
             raise PermissionDenied
         form.instance.created_by = self.request.user
-        form.instance.save()
+        form.save()
+        messages.success(self.request, _("your post was made!"))
         return redirect("feed")
 
     def get_context_data(self, **kwargs):
