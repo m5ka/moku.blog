@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django_recaptcha.fields import ReCaptchaField
 
-from moku.models.user import User
+from moku.models.user import User, UserSettings
 
 
 class UserForm(UserCreationForm):
@@ -29,6 +29,15 @@ class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["captcha"].error_messages = {"required": _("make sure you've ticked the captcha.")}
+
+
+class UserSettingsForm(forms.ModelForm):
+    class Meta:
+        model = UserSettings
+        fields = ("language",)
+        labels = {
+            "language": _("language"),
+        }
 
 
 class ProfileForm(forms.ModelForm):

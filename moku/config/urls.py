@@ -21,7 +21,7 @@ from django.urls import include, path
 
 from moku.views.auth import LoginView, LogoutView
 from moku.views.post import FeedView
-from moku.views.user import EditProfileView, ProfileView, SignupView
+from moku.views.user import EditProfileView, EditSettingsView, ProfileView, SignupView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,6 +30,7 @@ urlpatterns = [
     path("logout", LogoutView.as_view(), name="logout"),
     path("signup", SignupView.as_view(), name="signup"),
     path("profile", EditProfileView.as_view(), name="profile.edit"),
+    path("settings", EditSettingsView.as_view(), name="settings"),
     path("user/<str:username>", ProfileView.as_view(), name="profile"),
 ]
 

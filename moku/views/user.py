@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import IntegrityError
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.generic import FormView, TemplateView
 
 from moku.images import process_avatar_image
-from moku.forms.user import ProfileForm, UserForm
+from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
 from moku.models.user import User
 
 
@@ -22,6 +23,26 @@ class EditProfileView(LoginRequiredMixin, FormView):
 
     def get_form(self):
         return self.form_class(instance=self.request.user, **self.get_form_kwargs())
+
+
+class EditSettingsView(LoginRequiredMixin, FormView):
+    template_name = "moku/settings.jinja"
+    form_class = UserSettingsForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        try:
+            form.save()
+        except IntegrityError:
+            messages.error(self.request, _("uh oh. i think something went a little bit oopsie."))
+            return self.form_invalid(form)
+        messages.success(self.request, _("settings updated!"))
+        return redirect("settings")
+
+    def get_form(self):
+        if hasattr(self.request.user, "settings"):
+            return self.form_class(instance=self.request.user.settings, **self.get_form_kwargs())
+        return super().get_form()
 
 
 class ProfileView(TemplateView):

@@ -1,4 +1,5 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -77,3 +78,18 @@ class User(AbstractUser):
     @property
     def email_confirmed(self):
         return self.email_confirmed_at is not None
+
+
+class UserSettings(models.Model):
+    user = models.OneToOneField(
+        "User",
+        related_name="settings",
+        on_delete=models.CASCADE,
+    )
+    language = models.CharField(
+        verbose_name=_("language"),
+        max_length=16,
+        choices=settings.LANGUAGES,
+        default="en",
+        help_text=_("what language do you want to use moku.blog in?"),
+    )

@@ -1,0 +1,15 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content">
+        <form action="" method="POST" class="auth">
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_language">{{ form.language.label }}</label>
+                {{ form.language }}
+                <span class="help">{{ form.language.help_text }}</span>
+            </div>
+            <button type="submit">{% trans %}update!{% endtrans %}</button>
+        </form>
+    </div>
+{% endblock content %}
