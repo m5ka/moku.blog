@@ -58,7 +58,7 @@ class Post(models.Model):
     )
 
     def __str__(self):
-        return self.uuid
+        return f"{self.text} on {self.created_at}"
 
     @property
     def text(self):
