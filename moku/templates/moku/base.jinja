@@ -22,6 +22,7 @@
                             </form>
                         </li>
                     {% else %}
+                        <li><a href="{{ url('feed') }}">{% trans %}feed{% endtrans %}</a></li>
                         <li><a href="{{ url('login') }}">{% trans %}log in{% endtrans %}</a></li>
                         <li><a href="{{ url('signup') }}">{% trans %}sign up{% endtrans %}</a></li>
                     {% endif %}
