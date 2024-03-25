@@ -17,12 +17,12 @@
             </div>
             <div class="field">
                 <label for="id_password1">{{ form.password1.label }}</label>
-                <input type="password" name="password1" id="id_password1" value="{{ form.username.value() or "" }}" required>
+                <input type="password" name="password1" id="id_password1" required>
                 <span class="help">{{ form.password1.help_text|safe }}</span>
             </div>
             <div class="field">
                 <label for="id_password2">{{ form.password2.label }}</label>
-                <input type="password" name="password2" id="id_password2" value="{{ form.username.value() or "" }}" required>
+                <input type="password" name="password2" id="id_password2" required>
                 <span class="help">{{ form.password2.help_text }}</span>
             </div>
             <div class="field">

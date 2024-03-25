@@ -9,30 +9,22 @@ from moku.models.user import User
 
 
 class UserForm(UserCreationForm):
-    password1 = forms.CharField(
-        label=_("password"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        help_text=_("make a secure password that you've never used before!"),
-    )
-    password2 = forms.CharField(
-        label=_("password (again)"),
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        strip=False,
-        help_text=_("just type the password again to confirm."),
-    )
     captcha = ReCaptchaField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("username", "email")
+        fields = ("username", "email", "password1", "password2")
         labels = {
             "username": _("username"),
             "email": _("email address"),
+            "password1": _("password"),
+            "password2": _("password (again)"),
         }
         help_texts = {
             "username": User._meta.get_field("username").help_text,
             "email": User._meta.get_field("email").help_text,
+            "password1": _("make a secure password that you've never used before!"),
+            "password2": _("just type the password again to confirm"),
         }
 
     def __init__(self, *args, **kwargs):
