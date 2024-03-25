@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import FormView, TemplateView
+from django.urls import reverse
 
 from moku.forms.user import ProfileForm, UserForm
 from moku.models.user import User
@@ -32,3 +33,6 @@ class ProfileView(TemplateView):
 class SignupView(FormView):
     template_name = "moku/signup.jinja"
     form_class = UserForm
+
+    def get_success_url(self):
+        return reverse("feed")
