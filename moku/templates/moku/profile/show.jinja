@@ -3,22 +3,22 @@
 {% block content %}
     <div class="grid-content">
         <aside class="profile">
-            <h2>@{{ user.username }}</h2>
+            <h2>@{{ profile.username }}</h2>
             <dl>
                 <div>
                     <dt>{% trans %}pronouns{% endtrans %}</dt>
-                    <dd>{{ user.pronouns or "not set" }}</dd>
+                    <dd>{{ profile.pronouns or "not set" }}</dd>
                 </div>
                 <div>
                     <dt>{% trans %}location{% endtrans %}</dt>
-                    <dd>{{ user.location or "not set" }}</dd>
+                    <dd>{{ profile.location or "not set" }}</dd>
                 </div>
                 <div class="double">
                     <dt>{% trans %}about me{% endtrans %}</dt>
-                    <dd>{{ user.bio or "not set" }}</dd>
+                    <dd>{{ profile.bio or "not set" }}</dd>
                 </div>
             </dl>
-            {% if user.id == request.user.id %}
+            {% if profile.id == request.user.id %}
                 <p class="mt"><a href="{{ url('profile.edit') }}">{% trans %}edit{% endtrans %}</a></p>
             {% endif %}
         </aside>

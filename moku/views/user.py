@@ -27,7 +27,7 @@ class ProfileView(TemplateView):
         user = User.objects.get(username=self.kwargs.get("username"))
         return {
             **super().get_context_data(**kwargs),
-            "user": user,
+            "profile": user,
             "posts": user.posts.order_by("-created_at").all(),
         }
 
