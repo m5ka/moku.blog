@@ -10,18 +10,24 @@
                     </div>
                 {% endif %}
                 <h2 class="double">@{{ profile.username }}</h2>
-                <div>
-                    <dt>{% trans %}pronouns{% endtrans %}</dt>
-                    <dd>{{ profile.pronouns or "not set" }}</dd>
-                </div>
-                <div>
-                    <dt>{% trans %}location{% endtrans %}</dt>
-                    <dd>{{ profile.location or "not set" }}</dd>
-                </div>
-                <div class="double">
-                    <dt>{% trans %}about me{% endtrans %}</dt>
-                    <dd>{{ profile.bio or "not set" }}</dd>
-                </div>
+                {% if profile.pronouns %}
+                    <div>
+                        <dt>{% trans %}pronouns{% endtrans %}</dt>
+                        <dd>{{ profile.pronouns }}</dd>
+                    </div>
+                {% endif %}
+                {% if profile.location %}
+                    <div>
+                        <dt>{% trans %}location{% endtrans %}</dt>
+                        <dd>{{ profile.location }}</dd>
+                    </div>
+                {% endif %}
+                {% if profile.bio %}
+                    <div class="double">
+                        <dt>{% trans %}about me{% endtrans %}</dt>
+                        <dd>{{ profile.bio }}</dd>
+                    </div>
+                {% endif %}
             </dl>
             {% if profile.id == request.user.id %}
                 <p class="mt"><a href="{{ url('profile.edit') }}">{% trans %}edit{% endtrans %}</a></p>
