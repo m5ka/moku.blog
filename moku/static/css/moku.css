@@ -277,8 +277,10 @@ header h1 sup {
 
 header nav ul {
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     column-gap: 1.2rem;
+    row-gap: .8rem;
 }
 
 .grid-content {
