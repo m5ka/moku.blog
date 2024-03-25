@@ -210,6 +210,7 @@ form select:focus {
 form .emoji-picker {
     display: grid;
     row-gap: .2rem;
+    margin-block-end: .8rem;
 }
 
 form .emoji-picker details:first-of-type summary {
