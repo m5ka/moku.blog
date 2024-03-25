@@ -83,7 +83,7 @@ a:hover, button.logout:hover {
 .profile h2 {
     font-size: 1.8rem;
     font-weight: bold;
-    margin-block-end: 1.2rem;
+    margin-block-end: .6rem;
     color: var(--orange);
 }
 

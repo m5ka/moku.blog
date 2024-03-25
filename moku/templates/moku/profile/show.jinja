@@ -3,13 +3,13 @@
 {% block content %}
     <div class="grid-content">
         <aside class="profile">
-            <h2>@{{ profile.username }}</h2>
             <dl>
                 {% if profile.avatar %}
                     <div class="double">
                         <img src="{{ profile.avatar.url }}" alt="@{{ profile.username }}'s avatar" class="avatar">
                     </div>
                 {% endif %}
+                <h2 class="double">@{{ profile.username }}</h2>
                 <div>
                     <dt>{% trans %}pronouns{% endtrans %}</dt>
                     <dd>{{ profile.pronouns or "not set" }}</dd>
