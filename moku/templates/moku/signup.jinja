@@ -12,7 +12,7 @@
             </div>
             <div class="field">
                 <label for="id_email">{{ form.email.label }}</label>
-                <input type="email" name="email" id="id_email" value="{{ form.username.value() or "" }}" required>
+                <input type="email" name="email" id="id_email" value="{{ form.email.value() or "" }}" required>
                 <span class="help">{{ form.email.help_text }}</span>
             </div>
             <div class="field">
