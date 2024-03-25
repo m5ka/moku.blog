@@ -62,7 +62,12 @@ class SignupView(FormView):
     form_class = UserForm
 
     def form_valid(self, form):
-        form.save()
+        form.instance.username = form.instance.username.lower()
+        try:
+            form.save()
+        except IntegrityError:
+            messages.error(self.request, _("sorry! someone else got to that username first."))
+            return self.form_invalid(form)
         messages.success(self.request, _("that's it! just log in, and you're ready to go."))
         return redirect("login")
 
