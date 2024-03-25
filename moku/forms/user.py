@@ -16,14 +16,10 @@ class UserForm(UserCreationForm):
         labels = {
             "username": _("username"),
             "email": _("email address"),
-            "password1": _("password"),
-            "password2": _("password (again)"),
         }
         help_texts = {
             "username": User._meta.get_field("username").help_text,
             "email": User._meta.get_field("email").help_text,
-            "password1": _("make a secure password that you've never used before!"),
-            "password2": _("just type the password again to confirm"),
         }
 
     def __init__(self, *args, **kwargs):

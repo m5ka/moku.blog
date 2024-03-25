@@ -16,14 +16,14 @@
                 <span class="help">{{ form.email.help_text }}</span>
             </div>
             <div class="field">
-                <label for="id_password1">{{ form.password1.label }}</label>
+                <label for="id_password1">{% trans %}password{% endtrans %}</label>
                 <input type="password" name="password1" id="id_password1" required>
-                <span class="help">{{ form.password1.help_text|safe }}</span>
+                <span class="help">{% trans %}make a secure password that you've never used before!{% endtrans %}</span>
             </div>
             <div class="field">
-                <label for="id_password2">{{ form.password2.label }}</label>
+                <label for="id_password2">{% trans %}password (again){% endtrans %}</label>
                 <input type="password" name="password2" id="id_password2" required>
-                <span class="help">{{ form.password2.help_text }}</span>
+                <span class="help">{% trans %}just type the password again to confirm.{% endtrans %}</span>
             </div>
             <div class="field">
                 <label for="id_captcha">captcha</label>
