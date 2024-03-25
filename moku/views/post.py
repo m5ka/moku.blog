@@ -49,5 +49,6 @@ class FeedView(FormView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.fields["recipe"].queryset = Recipe.objects.filter(created_by=self.request.user)
+        if self.request.user.is_authenticated:
+            form.fields["recipe"].queryset = Recipe.objects.filter(created_by=self.request.user)
         return form
