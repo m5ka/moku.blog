@@ -3,11 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.views.generic import FormView, TemplateView
 
 from moku.images import process_avatar_image
 from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
 from moku.models.user import User
+from moku.views.base import FormView, View
 
 
 class EditProfileView(LoginRequiredMixin, FormView):
@@ -45,7 +45,7 @@ class EditSettingsView(LoginRequiredMixin, FormView):
         return super().get_form()
 
 
-class ProfileView(TemplateView):
+class ProfileView(View):
     template_name = "moku/profile/show.jinja"
 
     def get_context_data(self, **kwargs):

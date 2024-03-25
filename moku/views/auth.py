@@ -4,8 +4,10 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 
+from moku.views.base import View
 
-class LoginView(BaseLoginView):
+
+class LoginView(View, BaseLoginView):
     template_name = "moku/login.jinja"
 
     def get(self, request, *args, **kwargs):

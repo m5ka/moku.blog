@@ -2,13 +2,13 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.views.generic import FormView
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
 from moku.forms.post import PostForm
 from moku.images import process_post_image
 from moku.models.post import Post
 from moku.models.recipe import Recipe
+from moku.views.base import FormView
 
 
 class FeedView(FormView):

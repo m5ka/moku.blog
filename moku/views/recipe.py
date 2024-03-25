@@ -1,15 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import FormView, TemplateView
 from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 
 from moku.forms.recipe import RecipeForm, RecipeStepForm
 from moku.models.recipe import Recipe, RecipeStep
+from moku.views.base import FormView, View
 
 
-class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request, *args, **kwargs):
         self.recipe.delete()
         messages.success(self.request, _("recipe deleted successfully!"))
@@ -26,7 +26,7 @@ class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         return self.request.user.id == self.recipe.created_by.id
 
 
-class DeleteStepView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class DeleteStepView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request, *args, **kwargs):
         if self.step.order != (self.step.recipe.steps.count() - 1):
             messages.error(self.request, _("sorry! you can only delete the last step."))
@@ -71,7 +71,7 @@ class EditStepView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         return self.request.user.id == self.step.recipe.created_by.id
 
 
-class IndexRecipeView(LoginRequiredMixin, TemplateView):
+class IndexRecipeView(LoginRequiredMixin, View):
     template_name = "moku/recipe/index.jinja"
 
     def get_context_data(self, **kwargs):
