@@ -41,7 +41,7 @@ jobs:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: install dependencies
-        run: poetry install --with test
+        run: poetry install --with dev,test
       - name: check linter and formatter
         run: |
           poetry run ruff check .
