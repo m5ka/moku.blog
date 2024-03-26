@@ -12,7 +12,7 @@
         <p class="metadata">{{ post.created_at|naturaltime }}</p>
         {% if post.recipe %}
             <details class="recipe">
-                <summary>recipe</summary>
+                <summary>{% trans %}recipe{% endtrans %}</summary>
                 <ol>
                     {% for step in post.recipe.steps.all() %}
                         <li>{{ step.instructions }}</li>

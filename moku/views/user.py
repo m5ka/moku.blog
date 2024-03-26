@@ -3,7 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.functional import cached_property
-from django.utils.translation import gettext as _, gettext_lazy as _l
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as gettext_lazy
 
 from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
 from moku.images import process_avatar_image
@@ -16,7 +17,7 @@ class EditProfileView(LoginRequiredMixin, FormView):
 
     template_name = "moku/profile/edit.jinja"
     form_class = ProfileForm
-    page_title = _l("edit profile")
+    page_title = gettext_lazy("edit profile")
 
     def form_valid(self, form):
         if "avatar" in form.changed_data and form.instance.avatar is not None:

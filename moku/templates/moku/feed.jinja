@@ -63,7 +63,7 @@
     </aside>
     <main>
         {% if not posts %}
-            <p>{% trans %}no posts yet... 🥱{% endtrans %}</p>
+            <p>{% trans %}no posts yet...{% endtrans %} 🥱</p>
         {% endif %}
         {% for post in posts %}
             {% include "moku/snippets/post.jinja" %}

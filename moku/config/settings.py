@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 # Initial environment
 env = environ.Env()
@@ -135,6 +136,14 @@ LANGUAGE_CODE = "en-gb"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
+
+# Available languages
+# https://docs.djangoproject.com/en/5.0/ref/settings/#languages
+LANGUAGES = [
+    ("en", _("english")),
+    ("lio", _("lami lioa")),
+    ("tok", _("toki pona")),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

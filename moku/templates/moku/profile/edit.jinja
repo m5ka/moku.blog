@@ -26,7 +26,7 @@
                 <textarea name="bio" id="id_bio">{{ form.bio.value() or "" }}</textarea>
                 <span class="help">{{ form.bio.help_text }}</span>
             </div>
-            <button type="submit">update!</button>
+            <button type="submit">{% trans %}update!{% endtrans %}</button>
         </form>
     </div>
 {% endblock content %}
