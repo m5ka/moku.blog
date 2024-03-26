@@ -5,6 +5,7 @@ from PIL import Image, ImageOps
 
 
 def _convert_image_to_webp(image_file):
+    """Private helper function for image conversion."""
     image = Image.open(image_file)
     ImageOps.exif_transpose(image, in_place=True)
     image.convert("RGB")
@@ -15,8 +16,10 @@ def _convert_image_to_webp(image_file):
 
 
 def process_avatar_image(image_file):
+    """Image conversion function for user avatars."""
     return _convert_image_to_webp(image_file)
 
 
 def process_post_image(image_file):
+    """Image conversion function for post images."""
     return _convert_image_to_webp(image_file)

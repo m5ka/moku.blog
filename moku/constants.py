@@ -2,6 +2,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Verbs:
+    """Defines choices of possible verbs in posts."""
+
     ATE = "ate"
     DRANK = "drank"
     MADE = "made"
@@ -247,3 +249,4 @@ EMOJI_CATEGORIES = [
     ),
     (_("tools & things"), ("🥄", "🍴", "🍽️", "🥣", "🥡", "🥢", "🧂", "🔪", "🪓")),
 ]
+"""Defines emoji that are available in the emoji picker widget."""

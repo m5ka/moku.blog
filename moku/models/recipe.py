@@ -5,6 +5,8 @@ from shortuuid.django_fields import ShortUUIDField
 
 
 class RecipeManager(models.Manager):
+    """Manages recipe objects more efficiently by pre-fetching steps."""
+
     def get_queryset(self):
         return (
             super()
@@ -16,6 +18,8 @@ class RecipeManager(models.Manager):
 
 
 class Recipe(models.Model):
+    """Represents a single recipe on the site."""
+
     uuid = ShortUUIDField(
         verbose_name=_("unique id"),
         max_length=22,
@@ -47,6 +51,8 @@ class Recipe(models.Model):
 
 
 class RecipeStep(models.Model):
+    """Represents a single step belonging to a recipe."""
+
     uuid = ShortUUIDField(
         verbose_name=_("step id"),
         max_length=22,

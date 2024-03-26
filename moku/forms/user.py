@@ -7,6 +7,8 @@ from moku.models.user import User, UserSettings
 
 
 class UserForm(UserCreationForm):
+    """Form for creating a new user account on the site."""
+
     captcha = ReCaptchaField(required=True)
     check = forms.BooleanField(required=True)
 
@@ -30,6 +32,8 @@ class UserForm(UserCreationForm):
 
 
 class UserSettingsForm(forms.ModelForm):
+    """Form for creating or updating user settings."""
+
     class Meta:
         model = UserSettings
         fields = ("language",)
@@ -37,6 +41,8 @@ class UserSettingsForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    """Form for updating user profile information."""
+
     class Meta:
         model = User
         fields = ("avatar", "pronouns", "location", "bio")

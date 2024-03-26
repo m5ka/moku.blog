@@ -5,6 +5,8 @@ from moku.models import Post
 
 
 class PostForm(ModelForm):
+    """Form for creating and updating posts."""
+
     class Meta:
         model = Post
         fields = ("emoji", "verb", "food", "recipe", "image")

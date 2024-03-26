@@ -11,6 +11,8 @@ for model_name in models.__all__:
 
 @admin.register(models.User)
 class UserAdmin(BaseUserAdmin):
+    """Admin class override for the User model."""
+
     fieldsets = (
         (None, {"fields": ("username", "email", "password")}),
         ("Profile", {"fields": ("pronouns", "location", "bio")}),

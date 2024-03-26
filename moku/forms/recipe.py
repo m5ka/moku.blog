@@ -5,6 +5,8 @@ from moku.models.recipe import Recipe, RecipeStep
 
 
 class RecipeForm(ModelForm):
+    """Form for creating and updating recipes."""
+
     class Meta:
         model = Recipe
         fields = ("title",)
@@ -12,6 +14,8 @@ class RecipeForm(ModelForm):
 
 
 class RecipeStepForm(ModelForm):
+    """Form for creating and updating steps of a recipe."""
+
     class Meta:
         model = RecipeStep
         fields = ("instructions",)

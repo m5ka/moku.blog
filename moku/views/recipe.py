@@ -10,6 +10,8 @@ from moku.views.base import FormView, View
 
 
 class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, View):
+    """Deletes a recipe from the database if it belongs to the authenticated user."""
+
     def get(self, request, *args, **kwargs):
         self.recipe.delete()
         messages.success(self.request, _("recipe deleted successfully!"))
@@ -24,6 +26,10 @@ class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 class DeleteStepView(LoginRequiredMixin, UserPassesTestMixin, View):
+    """
+    Deletes a recipe step from the database if it belongs to the authenticated user.
+    """
+
     def get(self, request, *args, **kwargs):
         if self.step.order != (self.step.recipe.steps.count() - 1):
             messages.error(self.request, _("sorry! you can only delete the last step."))
@@ -45,6 +51,8 @@ class DeleteStepView(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 class EditStepView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    """Allows users to edit steps of a recipe they created."""
+
     template_name = "moku/recipe/edit_step.jinja"
     form_class = RecipeStepForm
 
@@ -69,6 +77,8 @@ class EditStepView(LoginRequiredMixin, UserPassesTestMixin, FormView):
 
 
 class IndexRecipeView(LoginRequiredMixin, View):
+    """Shows a list of recipes created by the authenticated user."""
+
     template_name = "moku/recipe/index.jinja"
 
     def get_context_data(self, **kwargs):
@@ -81,6 +91,8 @@ class IndexRecipeView(LoginRequiredMixin, View):
 
 
 class NewRecipeView(LoginRequiredMixin, FormView):
+    """Allows users to create a new recipe."""
+
     template_name = "moku/recipe/form.jinja"
     form_class = RecipeForm
 
@@ -95,6 +107,11 @@ class NewRecipeView(LoginRequiredMixin, FormView):
 
 
 class ShowRecipeView(FormView):
+    """
+    Shows users details about a recipe, and allows steps to be created for it if they
+    are logged in as the recipe creator.
+    """
+
     template_name = "moku/recipe/show.jinja"
     form_class = RecipeStepForm
 

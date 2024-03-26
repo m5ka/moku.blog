@@ -7,6 +7,7 @@ from emoji import is_emoji
 
 
 def validate_emoji(value):
+    """Validates that a given string is a single emoji."""
     if not is_emoji(value):
         raise ValidationError(_("Must be an emoji."))
 
@@ -16,9 +17,11 @@ validate_username_regex = RegexValidator(
     _("Username may only contain letters, numbers, hyphens, underscores and dots."),
     "invalid",
 )
+"""Validates that a given string is a valid username."""
 
 
 def validate_username_length(value):
+    """Validates the length of a given username string according to Django settings."""
     if (
         len(value) < settings.USERNAME_MIN_LENGTH
         or len(value) > settings.USERNAME_MAX_LENGTH

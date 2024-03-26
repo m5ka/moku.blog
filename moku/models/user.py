@@ -8,10 +8,13 @@ from moku.validators import validate_username_length, validate_username_regex
 
 
 def user_avatar_filename(instance, _):
+    """Returns the filename that user avatar images should be saved to."""
     return f"avatars/{instance.username}.webp"
 
 
 class User(AbstractUser):
+    """Represents a single authenticated user on the site."""
+
     username = models.CharField(
         verbose_name=_("username"),
         max_length=64,
@@ -74,10 +77,13 @@ class User(AbstractUser):
 
     @property
     def email_confirmed(self):
+        """Whether the user has confirmed their email address."""
         return self.email_confirmed_at is not None
 
 
 class UserSettings(models.Model):
+    """Represents settings for a single user."""
+
     user = models.OneToOneField(
         "User", related_name="settings", on_delete=models.CASCADE
     )

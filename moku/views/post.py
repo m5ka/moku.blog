@@ -17,6 +17,8 @@ from moku.views.base import FormView
 
 
 class FeedView(FormView):
+    """Allows users to see recent posts and create a new post."""
+
     template_name = "moku/feed.jinja"
     form_class = PostForm
 
@@ -70,6 +72,8 @@ class FeedView(FormView):
 
 
 class LatestPostJSONView(BaseView):
+    """Renders the latest post from a specific user as JSON."""
+
     def get(self, request, *args, **kwargs):
         post = (
             Post.objects.prefetch_related("recipe__steps")

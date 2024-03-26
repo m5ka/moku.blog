@@ -11,6 +11,8 @@ from moku.views.base import FormView, View
 
 
 class EditProfileView(LoginRequiredMixin, FormView):
+    """Allows a user to edit information within their user profile."""
+
     template_name = "moku/profile/edit.jinja"
     form_class = ProfileForm
 
@@ -26,6 +28,8 @@ class EditProfileView(LoginRequiredMixin, FormView):
 
 
 class EditSettingsView(LoginRequiredMixin, FormView):
+    """Allows a user to edit information within their user settings."""
+
     template_name = "moku/settings.jinja"
     form_class = UserSettingsForm
 
@@ -50,6 +54,8 @@ class EditSettingsView(LoginRequiredMixin, FormView):
 
 
 class ProfileView(View):
+    """Shows a user's profile along with a list of their recent posts."""
+
     template_name = "moku/profile/show.jinja"
 
     def get_context_data(self, **kwargs):
@@ -62,6 +68,8 @@ class ProfileView(View):
 
 
 class SignupView(FormView):
+    """Allows non-authenticated users to create an account on the site."""
+
     template_name = "moku/signup.jinja"
     form_class = UserForm
 

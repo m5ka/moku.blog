@@ -9,10 +9,13 @@ from moku.validators import validate_emoji
 
 
 def post_image_filename(instance, _):
+    """Returns the filename that post images should be saved to."""
     return f"posts/{instance.created_by.username}__{instance.uuid}.webp"
 
 
 class PostManager(models.Manager):
+    """Manages post objects more efficiently by pre-fetching recipes and their steps."""
+
     def get_queryset(self):
         return (
             super()
@@ -28,6 +31,8 @@ class PostManager(models.Manager):
 
 
 class Post(models.Model):
+    """Represents a single post on the site."""
+
     uuid = ShortUUIDField(
         verbose_name=_("unique id"),
         max_length=22,
@@ -85,6 +90,10 @@ class Post(models.Model):
 
     @property
     def text(self):
+        """
+        The text of the post, with the post's chosen verb hydrated with food and user
+        information.
+        """
         return self.get_verb_display() % {
             "user": (
                 f'<a href="{self.created_by.get_absolute_url()}">'

@@ -9,6 +9,8 @@ from moku.views.base import View
 
 
 class LoginView(View, BaseLoginView):
+    """Allows users to log in by username and password."""
+
     template_name = "moku/login.jinja"
 
     def get(self, request, *args, **kwargs):
@@ -27,4 +29,6 @@ class LoginView(View, BaseLoginView):
 
 
 class LogoutView(BaseLogoutView):
+    """Logs the user out and redirect them to the feed."""
+
     next_page = "feed"
