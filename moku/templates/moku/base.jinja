@@ -3,7 +3,15 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
-        <title>moku.blog</title>
+        <title>{% if page_title %}{{ page_title }} — {% endif %}moku.blog</title>
+        {% if page_title %}<meta property="og:title" content="{{ page_title }}">{% endif %}
+        <meta property="og:site_name" content="moku.blog">
+        <meta property="og:type" content="{{ opengraph_type or "website" }}">
+        <meta property="og:description" content="a lightweight food blogging website">
+        <meta name="description" content="a lightweight food blogging website">
+        <meta property="og:url" content="{{ site_root_url }}{{ request.path }}">
+        <link rel="canonical" href="{{ site_root_url }}{{ request.path }}">
+        <meta name="theme-color" content="#c94c10">
         <link rel="stylesheet" href="{{ static('css/reset.css') }}" type="text/css">
         <link rel="stylesheet" href="{{ static('css/moku.css') }}" type="text/css">
         <link rel="shortcut icon" href="{{ static('images/favicon.png') }}" type="image/png">

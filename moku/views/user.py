@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
-from django.shortcuts import redirect
-from django.utils.translation import gettext as _
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.functional import cached_property
+from django.utils.translation import gettext as _, gettext_lazy as _l
 
 from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
 from moku.images import process_avatar_image
@@ -15,6 +16,7 @@ class EditProfileView(LoginRequiredMixin, FormView):
 
     template_name = "moku/profile/edit.jinja"
     form_class = ProfileForm
+    page_title = _l("edit profile")
 
     def form_valid(self, form):
         if "avatar" in form.changed_data and form.instance.avatar is not None:
@@ -32,6 +34,7 @@ class EditSettingsView(LoginRequiredMixin, FormView):
 
     template_name = "moku/settings.jinja"
     form_class = UserSettingsForm
+    page_title = _("settings")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -58,12 +61,19 @@ class ProfileView(View):
 
     template_name = "moku/profile/show.jinja"
 
+    @property
+    def page_title(self):
+        return f"@{self.profile.username}"
+
+    @cached_property
+    def profile(self):
+        return get_object_or_404(User, username=self.kwargs.get("username"))
+
     def get_context_data(self, **kwargs):
-        user = User.objects.get(username=self.kwargs.get("username"))
         return {
             **super().get_context_data(**kwargs),
-            "profile": user,
-            "posts": user.posts.order_by("-created_at").all(),
+            "profile": self.profile,
+            "posts": self.profile.posts.order_by("-created_at").all(),
         }
 
 
@@ -72,6 +82,7 @@ class SignupView(FormView):
 
     template_name = "moku/signup.jinja"
     form_class = UserForm
+    page_title = _("sign up")
 
     def form_valid(self, form):
         form.instance.username = form.instance.username.lower()

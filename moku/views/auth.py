@@ -12,6 +12,7 @@ class LoginView(View, BaseLoginView):
     """Allows users to log in by username and password."""
 
     template_name = "moku/login.jinja"
+    page_title = "log in"
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:

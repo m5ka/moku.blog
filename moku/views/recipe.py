@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.functional import cached_property
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext as _, gettext_lazy as _l
 
 from moku.forms.recipe import RecipeForm, RecipeStepForm
 from moku.models.recipe import Recipe, RecipeStep
@@ -56,6 +56,10 @@ class EditStepView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     template_name = "moku/recipe/edit_step.jinja"
     form_class = RecipeStepForm
 
+    @property
+    def page_title(self):
+        return f"edit: step #{self.step.order + 1} of {self.step.recipe.title}"
+
     def form_valid(self, form):
         form.save()
         messages.success(self.request, _("step updated!"))
@@ -80,6 +84,7 @@ class IndexRecipeView(LoginRequiredMixin, View):
     """Shows a list of recipes created by the authenticated user."""
 
     template_name = "moku/recipe/index.jinja"
+    page_title = _l("my recipes")
 
     def get_context_data(self, **kwargs):
         return {
@@ -95,6 +100,7 @@ class NewRecipeView(LoginRequiredMixin, FormView):
 
     template_name = "moku/recipe/form.jinja"
     form_class = RecipeForm
+    page_title = _l("new recipe")
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -114,6 +120,10 @@ class ShowRecipeView(FormView):
 
     template_name = "moku/recipe/show.jinja"
     form_class = RecipeStepForm
+
+    @property
+    def page_title(self):
+        return self.recipe.title
 
     @cached_property
     def recipe(self):
