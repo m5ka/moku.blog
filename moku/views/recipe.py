@@ -17,10 +17,7 @@ class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     @cached_property
     def recipe(self):
-        return get_object_or_404(
-            Recipe,
-            uuid=self.kwargs.get("uuid"),
-        )
+        return get_object_or_404(Recipe, uuid=self.kwargs.get("uuid"))
 
     def test_func(self):
         return self.request.user.id == self.recipe.created_by.id
@@ -77,7 +74,9 @@ class IndexRecipeView(LoginRequiredMixin, View):
     def get_context_data(self, **kwargs):
         return {
             **super().get_context_data(**kwargs),
-            "recipes": Recipe.objects.filter(created_by=self.request.user).order_by("-created_by"),
+            "recipes": Recipe.objects.filter(created_by=self.request.user).order_by(
+                "-created_by"
+            ),
         }
 
 
@@ -88,7 +87,10 @@ class NewRecipeView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.save()
-        messages.success(self.request, _("recipe made successfully! now you can start adding the steps."))
+        messages.success(
+            self.request,
+            _("recipe made successfully! now you can start adding the steps."),
+        )
         return redirect(form.instance.get_absolute_url())
 
 
@@ -101,12 +103,17 @@ class ShowRecipeView(FormView):
         return Recipe.objects.get(uuid=self.kwargs.get("uuid"))
 
     def form_valid(self, form):
-        if not self.request.user.is_authenticated or self.request.user.id != self.recipe.created_by.id:
+        if (
+            not self.request.user.is_authenticated
+            or self.request.user.id != self.recipe.created_by.id
+        ):
             messages.error(self.request, _("that's not yours!"))
             return redirect(form.instance.get_absolute_url())
         order = self.recipe.steps.count()
         if order >= 16:
-            messages.error(self.request, _("sorry! you can't add any more steps to this recipe."))
+            messages.error(
+                self.request, _("sorry! you can't add any more steps to this recipe.")
+            )
             return redirect(self.recipe.get_absolute_url())
         form.instance.recipe = self.recipe
         form.instance.order = order
@@ -115,7 +122,4 @@ class ShowRecipeView(FormView):
         return redirect(self.recipe.get_absolute_url())
 
     def get_context_data(self, **kwargs):
-        return {
-            **super().get_context_data(**kwargs),
-            "recipe": self.recipe,
-        }
+        return {**super().get_context_data(**kwargs), "recipe": self.recipe}

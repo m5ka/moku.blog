@@ -23,8 +23,13 @@ class FeedView(FormView):
     def form_valid(self, form):
         if not self.request.user.is_authenticated:
             raise PermissionDenied
-        if form.instance.recipe and form.instance.recipe.created_by.id != self.request.user.id:
-            messages.error(self.request, _("you can't add someone else's recipe to your post!"))
+        if (
+            form.instance.recipe
+            and form.instance.recipe.created_by.id != self.request.user.id
+        ):
+            messages.error(
+                self.request, _("you can't add someone else's recipe to your post!")
+            )
             return redirect("feed")
         form.instance.created_by = self.request.user
         if "image" in form.changed_data and form.instance.image is not None:
@@ -36,7 +41,7 @@ class FeedView(FormView):
     def get_context_data(self, **kwargs):
         context = {
             **super().get_context_data(**kwargs),
-            "posts": Post.objects.all()[:128]
+            "posts": Post.objects.all()[:128],
         }
         if self.request.user.is_authenticated:
             return self.get_authenticated_context_data(context)
@@ -47,39 +52,54 @@ class FeedView(FormView):
             **context,
             "emoji": EMOJI_CATEGORIES,
             "verbs": (
-                (verb[0], verb[1] % {"user": f"@{self.request.user.username}", "food": "..."})
+                (
+                    verb[0],
+                    verb[1] % {"user": f"@{self.request.user.username}", "food": "..."},
+                )
                 for verb in Verbs.CHOICES
-            )
+            ),
         }
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         if self.request.user.is_authenticated:
-            form.fields["recipe"].queryset = Recipe.objects.filter(created_by=self.request.user)
+            form.fields["recipe"].queryset = Recipe.objects.filter(
+                created_by=self.request.user
+            )
         return form
 
 
 class LatestPostJSONView(BaseView):
     def get(self, request, *args, **kwargs):
-        post = Post.objects.prefetch_related("recipe__steps") \
-                .filter(created_by__username=kwargs.get("username")) \
-                .order_by("-created_at").first()
+        post = (
+            Post.objects.prefetch_related("recipe__steps")
+            .filter(created_by__username=kwargs.get("username"))
+            .order_by("-created_at")
+            .first()
+        )
         if not post:
-            return HttpResponse(json.dumps({"post": None}), content_type="application/json")
+            return HttpResponse(
+                json.dumps({"post": None}), content_type="application/json"
+            )
         post_data = {
             "date": str(post.created_at),
-            "text": post.get_verb_display() % {"user": f"@{post.created_by.username}", "food": post.food},
+            "text": post.get_verb_display()
+            % {"user": f"@{post.created_by.username}", "food": post.food},
             "food": post.food,
             "verb": {
                 "id": post.verb,
                 "pattern": post.get_verb_display() % {"user": "$1", "food": "$2"},
             },
-            "image": f"{settings.SITE_ROOT_URL}{post.image.url}" if post.image else None,
+            "image": f"{settings.SITE_ROOT_URL}{post.image.url}"
+            if post.image
+            else None,
             "user": {
                 "username": post.created_by.username,
                 "url": f"{settings.SITE_ROOT_URL}{post.created_by.get_absolute_url()}",
             },
         }
         if post.recipe:
-            post_data["recipe"] = [step.instructions for step in post.recipe.steps.all()]
+            post_data["recipe"] = [
+                step.instructions for step in post.recipe.steps.all()
+            ]
         return HttpResponse(json.dumps(post_data), content_type="application/json")

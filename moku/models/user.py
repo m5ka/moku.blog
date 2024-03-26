@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
-from moku.validators import validate_username_regex, validate_username_length
+from moku.validators import validate_username_length, validate_username_regex
 
 
 def user_avatar_filename(instance, _):
@@ -21,7 +21,7 @@ class User(AbstractUser):
         help_text=_(
             "this is the unique identifier you'll use to log in. it may only contain "
             "letters, numbers, hyphens, dashes and dots."
-        )
+        ),
     )
     email = models.EmailField(
         verbose_name=_("email address"),
@@ -30,12 +30,9 @@ class User(AbstractUser):
         help_text=_(
             "this should be your email address. make sure it's valid and that you have "
             "access to it."
-        )
+        ),
     )
-    email_confirmed_at = models.DateTimeField(
-        blank=True,
-        null=True,
-    )
+    email_confirmed_at = models.DateTimeField(blank=True, null=True)
     pronouns = models.CharField(
         verbose_name=_("pronouns"),
         max_length=64,
@@ -82,9 +79,7 @@ class User(AbstractUser):
 
 class UserSettings(models.Model):
     user = models.OneToOneField(
-        "User",
-        related_name="settings",
-        on_delete=models.CASCADE,
+        "User", related_name="settings", on_delete=models.CASCADE
     )
     language = models.CharField(
         verbose_name=_("language"),

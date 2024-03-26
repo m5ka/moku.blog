@@ -4,8 +4,8 @@ from django.db import IntegrityError
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
-from moku.images import process_avatar_image
 from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
+from moku.images import process_avatar_image
 from moku.models.user import User
 from moku.views.base import FormView, View
 
@@ -34,14 +34,18 @@ class EditSettingsView(LoginRequiredMixin, FormView):
         try:
             form.save()
         except IntegrityError:
-            messages.error(self.request, _("uh oh. i think something went a little bit oopsie."))
+            messages.error(
+                self.request, _("uh oh. i think something went a little bit oopsie.")
+            )
             return self.form_invalid(form)
         messages.success(self.request, _("settings updated!"))
         return redirect("settings")
 
     def get_form(self):
         if hasattr(self.request.user, "settings"):
-            return self.form_class(instance=self.request.user.settings, **self.get_form_kwargs())
+            return self.form_class(
+                instance=self.request.user.settings, **self.get_form_kwargs()
+            )
         return super().get_form()
 
 
@@ -66,9 +70,13 @@ class SignupView(FormView):
         try:
             form.save()
         except IntegrityError:
-            messages.error(self.request, _("sorry! someone else got to that username first."))
+            messages.error(
+                self.request, _("sorry! someone else got to that username first.")
+            )
             return self.form_invalid(form)
-        messages.success(self.request, _("that's it! just log in, and you're ready to go."))
+        messages.success(
+            self.request, _("that's it! just log in, and you're ready to go.")
+        )
         return redirect("login")
 
     def get(self, request, *args, **kwargs):

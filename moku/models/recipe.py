@@ -1,15 +1,18 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from shortuuid.django_fields import ShortUUIDField
 
 
 class RecipeManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset() \
+        return (
+            super()
+            .get_queryset()
             .prefetch_related(
                 models.Prefetch("steps", queryset=RecipeStep.objects.order_by("order"))
             )
+        )
 
 
 class Recipe(models.Model):
@@ -31,12 +34,8 @@ class Recipe(models.Model):
         db_column="created_by_user_id",
         on_delete=models.CASCADE,
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     objects = RecipeManager()
 
@@ -57,19 +56,22 @@ class RecipeStep(models.Model):
     instructions = models.CharField(
         verbose_name=_("step instructions"),
         max_length=128,
-        help_text=_("the instructions for this step of the recipe. try to keep it clear and concise!"),
+        help_text=_(
+            "the instructions for this step of the recipe. try to keep it clear and "
+            "concise!"
+        ),
     )
     order = models.IntegerField(
         verbose_name=_("step number"),
         default=0,
         db_index=True,
-        help_text=_("which step in the recipe is this. this affects the order the recipe steps are shown."),
+        help_text=_(
+            "which step in the recipe is this. this affects the order the recipe steps "
+            "are shown."
+        ),
     )
     recipe = models.ForeignKey(
-        "Recipe",
-        related_name="steps",
-        db_index=True,
-        on_delete=models.CASCADE,
+        "Recipe", related_name="steps", db_index=True, on_delete=models.CASCADE
     )
 
     def __str__(self):

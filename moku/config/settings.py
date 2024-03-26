@@ -1,4 +1,3 @@
-import sys
 from pathlib import Path
 
 import environ
@@ -71,9 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
             ],
-            "filters": {
-                "unemoji": "moku.filters.unemoji",
-            },
+            "filters": {"unemoji": "moku.filters.unemoji"},
             "policies": {"ext.i18n.trimmed": True},
         },
     },

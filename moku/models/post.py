@@ -14,11 +14,17 @@ def post_image_filename(instance, _):
 
 class PostManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().select_related("created_by") \
+        return (
+            super()
+            .get_queryset()
+            .select_related("created_by")
             .prefetch_related(
-                models.Prefetch("recipe__steps", queryset=RecipeStep.objects.order_by("order"))
-            ) \
+                models.Prefetch(
+                    "recipe__steps", queryset=RecipeStep.objects.order_by("order")
+                )
+            )
             .order_by("-created_at")
+        )
 
 
 class Post(models.Model):
@@ -41,9 +47,7 @@ class Post(models.Model):
         help_text=_("how should we best phrase this entry?"),
     )
     food = models.CharField(
-        verbose_name=_("food"),
-        max_length=128,
-        help_text=_("what did you eat?"),
+        verbose_name=_("food"), max_length=128, help_text=_("what did you eat?")
     )
     image = models.ImageField(
         verbose_name=_("image"),
@@ -68,12 +72,10 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_("when this post was created."),
+        auto_now_add=True, help_text=_("when this post was created.")
     )
     updated_at = models.DateTimeField(
-        auto_now=True,
-        help_text=_("when this post was last updated."),
+        auto_now=True, help_text=_("when this post was last updated.")
     )
 
     objects = PostManager()
@@ -84,6 +86,9 @@ class Post(models.Model):
     @property
     def text(self):
         return self.get_verb_display() % {
-            "user": f"<a href=\"{self.created_by.get_absolute_url()}\">@{self.created_by.username}</a>",
+            "user": (
+                f'<a href="{self.created_by.get_absolute_url()}">'
+                f"@{self.created_by.username}</a>"
+            ),
             "food": escape(self.food),
         }
