@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - 'main'
+env:
+  DEBUG: true
+  DATABASE_URL: 'postgres://postgres:postgres@localhost:5432/postgres'
+  DJANGO_DEBUG_TOOLBAR: false
 jobs:
   test:
     runs-on: ubuntu-latest
