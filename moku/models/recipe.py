@@ -44,7 +44,7 @@ class Recipe(models.Model):
     objects = RecipeManager()
 
     def __str__(self):
-        return f"{self.title} by @{self.created_by.username}"
+        return f"{self.title}"
 
     def get_absolute_url(self):
         return reverse("recipe.show", kwargs={"uuid": self.uuid})
