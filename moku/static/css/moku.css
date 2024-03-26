@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Solway:wght@400;700&display=swap');
+
 :root {
     --tangerine: #F7A278;
     --orange: #c94c10;
@@ -6,7 +8,12 @@
     --charcoal: #626262;
 
     --emoji-picker-rounding: 6px;
+    --emoji-picker-label: #774519;
+    --emoji-picker-marker: #b9712f;
+
     --image-max-size: 324px;
+
+    --font-family: 'Solway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 *, *::before, *::after {
@@ -28,7 +35,7 @@ body {
     max-width: 768px;
     margin-inline: auto;
     padding: 2.4rem 1.2rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-family);
 }
 
 .mt {
@@ -74,6 +81,7 @@ button.logout {
     font-size: 1.6rem;
     cursor: pointer;
     padding: 0;
+    font-family: var(--font-family);
 }
 
 a, button.logout {
@@ -191,8 +199,9 @@ form input[type=password],
 form input[type=email],
 form textarea,
 form select {
-    padding: .2rem;
-    font-size: 1.6rem;
+    padding: .4rem .2rem;
+    font-size: 1.4rem;
+    font-family: var(--font-family);
     border: 1px solid var(--charcoal);
     border-radius: 3px;
     background: var(--champagne);
@@ -209,7 +218,6 @@ form select:focus {
 
 form .emoji-picker {
     display: grid;
-    row-gap: .2rem;
     margin-block-end: .8rem;
 }
 
@@ -225,10 +233,16 @@ form .emoji-picker details:last-of-type:not([open]) summary {
 
 form .emoji-picker details summary {
     background: var(--dusty-champagne);
+    color: var(--emoji-picker-label);
     font-size: 1.4rem;
+    font-weight: bold;
     padding: .4rem .6rem;
     user-select: none;
     cursor: default;
+}
+
+form .emoji-picker details summary::marker {
+    color: var(--emoji-picker-marker);
 }
 
 form .emoji-picker ul {
@@ -236,6 +250,16 @@ form .emoji-picker ul {
     grid-template-columns: repeat(5, 1fr);
     column-gap: .2rem;
     row-gap: .2rem;
+    justify-items: center;
+    border: solid var(--dusty-champagne);
+    border-width: 0 2px 0 2px;
+    padding: .4rem;
+}
+
+form .emoji-picker details:last-of-type[open] ul {
+    border-width: 0 2px 2px 2px;
+    border-bottom-right-radius: var(--emoji-picker-rounding);
+    border-bottom-left-radius: var(--emoji-picker-rounding);
 }
 
 form .emoji-picker ul li label {
@@ -248,7 +272,7 @@ form .emoji-picker ul li input[type=radio] {
 
 form .emoji-picker ul li input[type=radio]:checked + label {
     outline: 3px solid var(--tangerine);
-    border-radius: 50%;
+    border-radius: 4px;
 }
 
 form button[type=submit]:not(.logout) {
