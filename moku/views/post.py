@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -86,7 +87,10 @@ class LatestPostJSONView(BaseView):
                 json.dumps({"post": None}), content_type="application/json"
             )
         post_data = {
-            "date": str(post.created_at),
+            "date": {
+                "iso": str(post.created_at),
+                "natural": naturaltime(post.created_at),
+            },
             "text": post.get_verb_display()
             % {"user": f"@{post.created_by.username}", "food": post.food},
             "food": post.food,
