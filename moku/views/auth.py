@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
+from moku.forms.auth import AuthenticationForm
 from moku.views.base import View
 
 
@@ -12,6 +13,7 @@ class LoginView(View, BaseLoginView):
     """Allows users to log in by username and password."""
 
     template_name = "moku/login.jinja"
+    form_class = AuthenticationForm
     page_title = "log in"
 
     def get(self, request, *args, **kwargs):
