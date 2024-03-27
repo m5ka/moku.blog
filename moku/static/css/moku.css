@@ -54,6 +54,10 @@ body {
     color: var(--charcoal);
 }
 
+a.subtle:hover {
+    color: var(--orange);
+}
+
 .messages {
     margin-block-end: 1.6rem;
     display: grid;
