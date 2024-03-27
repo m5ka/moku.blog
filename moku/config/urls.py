@@ -23,6 +23,10 @@ from moku.views.user import (
     UserJSONView,
 )
 
+handler403 = "moku.views.error.forbidden"
+handler404 = "moku.views.error.not_found"
+handler500 = "moku.views.error.server_error"
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", FeedView.as_view(), name="feed"),

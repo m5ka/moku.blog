@@ -1,0 +1,12 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content block">
+        <h2>🧭 {% trans %}are you lost?{% endtrans %}</h2>
+        <p>{% trans %}it doesn't look like this is a page that exists, sorry.{% endtrans %}</p>
+        <p>{% trans %}the links at the top of the page should help you get back to where you want to be!{% endtrans%}</p>
+        <p class="mt subtle">{% trans email="m5ka@posteo.de" %}
+            do you think something might be wrong? send me an email at {{ email }}{% endtrans %}
+        </p>
+    </div>
+{% endblock content %}
