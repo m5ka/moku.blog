@@ -308,6 +308,32 @@ header nav ul {
     row-gap: .8rem;
 }
 
+.blog {
+    display: grid;
+    row-gap: 2.4rem;
+}
+
+.blog > h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.blog-post {
+    display: grid;
+    row-gap: .4rem;
+}
+
+.blog-post > h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.blog-post .post-metadata {
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    margin-block-end: 1.2rem;
+}
+
 .grid-content {
     display: grid;
     row-gap: 1.2rem;

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-26 18:45+0000\n"
+"POT-Creation-Date: 2024-03-27 12:13+0000\n"
 "PO-Revision-Date: 2024-03-26 18:28+0000\n"
 "Last-Translator: m5ka <m5ka@posteo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 msgid "english"
 msgstr "toki inli"
 
-#: moku/config/settings.py:144
+#: moku/config/settings.py:143
 msgid "lami lioa"
 msgstr "toki liwa"
 
-#: moku/config/settings.py:145
+#: moku/config/settings.py:143
 msgid "toki pona"
 msgstr "toki pona"
 
@@ -153,6 +153,22 @@ msgstr "ma"
 #: moku/templates/moku/profile/show.jinja:27
 msgid "about me"
 msgstr "mi sama ni"
+
+#: moku/models/blog.py:9
+msgid "title"
+msgstr ""
+
+#: moku/models/blog.py:11
+msgid "the title of the blog post."
+msgstr ""
+
+#: moku/models/blog.py:14
+msgid "content"
+msgstr ""
+
+#: moku/models/blog.py:15
+msgid "the content of the blog post. markdown is allowed here."
+msgstr ""
 
 #: moku/models/post.py:37 moku/models/recipe.py:24
 msgid "unique id"
@@ -290,29 +306,34 @@ msgstr "weka"
 msgid "log in"
 msgstr "insa"
 
-#: moku/templates/moku/base.jinja:37 moku/views/user.py:86
+#: moku/templates/moku/base.jinja:37 moku/views/user.py:93
 msgid "sign up"
 msgstr "pali e lipu jan"
 
-#: moku/templates/moku/base.jinja:55
+#: moku/templates/moku/base.jinja:55 moku/templates/moku/blog.jinja:5
+#: moku/views/blog.py:9
 msgid "blog"
 msgstr "lipu ante"
 
-#: moku/templates/moku/base.jinja:56 moku/views/user.py:38
+#: moku/templates/moku/base.jinja:56 moku/views/user.py:45
 msgid "settings"
 msgstr "ante linluwi"
 
-#: moku/templates/moku/base.jinja:57 moku/views/static.py:24
+#: moku/templates/moku/base.jinja:57 moku/views/static.py:17
 msgid "terms of use"
 msgstr "lipu kepeken"
 
-#: moku/templates/moku/base.jinja:58 moku/views/static.py:17
+#: moku/templates/moku/base.jinja:58 moku/views/static.py:10
 msgid "privacy policy"
 msgstr "lipu len"
 
 #: moku/templates/moku/base.jinja:59
 msgid "donate"
 msgstr "pana mani"
+
+#: moku/templates/moku/blog.jinja:7
+msgid "no blog posts yet..."
+msgstr "sitelen li lon ala..."
 
 #: moku/templates/moku/feed.jinja:52
 msgid "post!"
@@ -446,11 +467,11 @@ msgstr ""
 msgid "welcome back, %(username)s!"
 msgstr "jan %(username)s o toki!"
 
-#: moku/views/post.py:33
+#: moku/views/post.py:28
 msgid "you can't add someone else's recipe to your post!"
 msgstr "sina ken ala pana e sitelen kepeken nasin pali pi jan ante!"
 
-#: moku/views/post.py:40
+#: moku/views/post.py:35
 msgid "your post was made!"
 msgstr "sitelen sina li lon!"
 
@@ -490,30 +511,29 @@ msgstr "nasin pali ni li ken ala kama suli kin."
 msgid "step added successfully!"
 msgstr "kipisi pi nasin pali li lon!"
 
-#: moku/views/static.py:10
-msgid "changelog"
-msgstr "lipu ante"
-
-#: moku/views/user.py:20
+#: moku/views/user.py:27
 msgid "edit profile"
 msgstr "ante pi lipu jan"
 
-#: moku/views/user.py:26
+#: moku/views/user.py:33
 msgid "profile updated successfully!"
 msgstr "lipu jan li ante!"
 
-#: moku/views/user.py:46
+#: moku/views/user.py:53
 msgid "uh oh. i think something went a little bit oopsie."
 msgstr "a! ike li kama."
 
-#: moku/views/user.py:49
+#: moku/views/user.py:56
 msgid "settings updated!"
 msgstr "wile sina li ante!"
 
-#: moku/views/user.py:94
+#: moku/views/user.py:101
 msgid "sorry! someone else got to that username first."
 msgstr "jan ante li jo e nimi ni."
 
-#: moku/views/user.py:98
+#: moku/views/user.py:105
 msgid "that's it! just log in, and you're ready to go."
 msgstr "pona a! o sitelen e nimi sin ni la sina ken lon insa."
+
+#~ msgid "changelog"
+#~ msgstr "lipu ante"

@@ -52,7 +52,7 @@
         <footer>
             <nav>
                 <ul>
-                    <li><a href="{{ url('changelog') }}">{% trans %}blog{% endtrans %}</a></li>
+                    <li><a href="{{ url('blog.index') }}">{% trans %}blog{% endtrans %}</a></li>
                     {% if request.user.is_authenticated %}<li><a href="{{ url('settings') }}">{% trans %}settings{% endtrans %}</a></li>{% endif %}
                     <li><a href="{{ url('terms') }}">{% trans %}terms of use{% endtrans %}</a></li>
                     <li><a href="{{ url('privacy') }}">{% trans %}privacy policy{% endtrans %}</a></li>

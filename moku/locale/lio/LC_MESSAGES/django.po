@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-26 18:45+0000\n"
+"POT-Creation-Date: 2024-03-27 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: m5ka <m5ka@posteo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 msgid "english"
 msgstr "lami english"
 
-#: moku/config/settings.py:144
+#: moku/config/settings.py:143
 msgid "lami lioa"
 msgstr "lami lioa"
 
-#: moku/config/settings.py:145
+#: moku/config/settings.py:143
 msgid "toki pona"
 msgstr "lami tokipona"
 
@@ -154,6 +154,22 @@ msgstr "noli"
 msgid "about me"
 msgstr "oisa nai"
 
+#: moku/models/blog.py:9
+msgid "title"
+msgstr ""
+
+#: moku/models/blog.py:11
+msgid "the title of the blog post."
+msgstr ""
+
+#: moku/models/blog.py:14
+msgid "content"
+msgstr ""
+
+#: moku/models/blog.py:15
+msgid "the content of the blog post. markdown is allowed here."
+msgstr ""
+
 #: moku/models/post.py:37 moku/models/recipe.py:24
 msgid "unique id"
 msgstr "oioa mini"
@@ -286,29 +302,34 @@ msgstr "haoa"
 msgid "log in"
 msgstr "mimi"
 
-#: moku/templates/moku/base.jinja:37 moku/views/user.py:86
+#: moku/templates/moku/base.jinja:37 moku/views/user.py:93
 msgid "sign up"
 msgstr "holo hono"
 
-#: moku/templates/moku/base.jinja:55
+#: moku/templates/moku/base.jinja:55 moku/templates/moku/blog.jinja:5
+#: moku/views/blog.py:9
 msgid "blog"
 msgstr "pali oiki"
 
-#: moku/templates/moku/base.jinja:56 moku/views/user.py:38
+#: moku/templates/moku/base.jinja:56 moku/views/user.py:45
 msgid "settings"
 msgstr "oiki laia"
 
-#: moku/templates/moku/base.jinja:57 moku/views/static.py:24
+#: moku/templates/moku/base.jinja:57 moku/views/static.py:17
 msgid "terms of use"
 msgstr "pali koko"
 
-#: moku/templates/moku/base.jinja:58 moku/views/static.py:17
+#: moku/templates/moku/base.jinja:58 moku/views/static.py:10
 msgid "privacy policy"
 msgstr "pali pamo"
 
 #: moku/templates/moku/base.jinja:59
 msgid "donate"
 msgstr "hana kipi"
+
+#: moku/templates/moku/blog.jinja:7
+msgid "no blog posts yet..."
+msgstr "ka koma iapa..."
 
 #: moku/templates/moku/feed.jinja:52
 msgid "post!"
@@ -429,18 +450,19 @@ msgstr "ko oioa haino ia iapa ia koka ia '-' ia '_' ia '.'."
 #: moku/validators.py:30
 #, python-format
 msgid "Username must be between %(min_length)d and %(max_length)d characters."
-msgstr "ko homa nao na kino %(min_length)d. ko oioi nao na kino %(max_length)d."
+msgstr ""
+"ko homa nao na kino %(min_length)d. ko oioi nao na kino %(max_length)d."
 
 #: moku/views/auth.py:28
 #, python-format
 msgid "welcome back, %(username)s!"
 msgstr "ka maio li kai %(username)s sa mai!"
 
-#: moku/views/post.py:33
+#: moku/views/post.py:28
 msgid "you can't add someone else's recipe to your post!"
 msgstr "ko lisa sai io iapa ia haiki na haino oiki mo kai!"
 
-#: moku/views/post.py:40
+#: moku/views/post.py:35
 msgid "your post was made!"
 msgstr "ka haika ni iapa sa hali!"
 
@@ -480,30 +502,29 @@ msgstr "ko poli sai io iaoa li haiki hina ni sia sioa sa laka."
 msgid "step added successfully!"
 msgstr "ka iaio ni sia haiki sa hali!"
 
-#: moku/views/static.py:10
-msgid "changelog"
-msgstr "pali oiki"
-
-#: moku/views/user.py:20
+#: moku/views/user.py:27
 msgid "edit profile"
 msgstr "oiki na pali haino"
 
-#: moku/views/user.py:26
+#: moku/views/user.py:33
 msgid "profile updated successfully!"
 msgstr "ka sioa ni pali haino sa hali!"
 
-#: moku/views/user.py:46
+#: moku/views/user.py:53
 msgid "uh oh. i think something went a little bit oopsie."
 msgstr "haia. ko kaki lo mia mo mia sa laka nai."
 
-#: moku/views/user.py:49
+#: moku/views/user.py:56
 msgid "settings updated!"
 msgstr "ka sioa ni maoa kai sa hali!"
 
-#: moku/views/user.py:94
+#: moku/views/user.py:101
 msgid "sorry! someone else got to that username first."
 msgstr "ko kami ni oioa hina mo haino oiki sa laka."
 
-#: moku/views/user.py:98
+#: moku/views/user.py:105
 msgid "that's it! just log in, and you're ready to go."
 msgstr "poi! si iapa ni oioa ni oioa pamo li io oima ni lia kai ha."
+
+#~ msgid "changelog"
+#~ msgstr "pali oiki"
