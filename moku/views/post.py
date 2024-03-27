@@ -1,6 +1,8 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
@@ -11,10 +13,57 @@ from moku.models.recipe import Recipe
 from moku.views.base import FormView
 
 
+def _get_verbs(username):
+    return (
+        (verb[0], verb[1] % {"user": f"@{username}", "food": "..."})
+        for verb in Verbs.CHOICES
+    )
+
+
+class EditPostview(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    """Allows users to edit their previous posts."""
+
+    template_name = "moku/post/edit.jinja"
+    form_class = PostForm
+
+    def form_valid(self, form):
+        if (
+            form.instance.recipe
+            and form.instance.recipe.created_by.id != self.request.user.id
+        ):
+            messages.error(
+                self.request, _("you can't add someone else's recipe to your post!")
+            )
+            return self.form_invalid(form)
+        if "image" in form.changed_data and form.instance.image.name:
+            form.instance.image = process_post_image(form.instance.image)
+        form.save()
+        messages.success(self.request, _("your post was updated!"))
+        return redirect("feed")
+
+    def get_context_data(self, **kwargs):
+        return {
+            **super().get_context_data(**kwargs),
+            "post": self.post_object,
+            "verbs": _get_verbs(self.request.user.username),
+            "emoji": EMOJI_CATEGORIES,
+        }
+
+    def get_form(self):
+        return self.form_class(instance=self.post_object, **self.get_form_kwargs())
+
+    @cached_property
+    def post_object(self):
+        return get_object_or_404(Post, uuid=self.kwargs.get("uuid"))
+
+    def test_func(self):
+        return self.post_object.created_by.id == self.request.user.id
+
+
 class FeedView(FormView):
     """Allows users to see recent posts and create a new post."""
 
-    template_name = "moku/feed.jinja"
+    template_name = "moku/post/index.jinja"
     form_class = PostForm
 
     def form_valid(self, form):
@@ -29,7 +78,7 @@ class FeedView(FormView):
             )
             return redirect("feed")
         form.instance.created_by = self.request.user
-        if "image" in form.changed_data and form.instance.image is not None:
+        if "image" in form.changed_data and form.instance.image.name:
             form.instance.image = process_post_image(form.instance.image)
         form.save()
         messages.success(self.request, _("your post was made!"))
@@ -48,13 +97,7 @@ class FeedView(FormView):
         return {
             **context,
             "emoji": EMOJI_CATEGORIES,
-            "verbs": (
-                (
-                    verb[0],
-                    verb[1] % {"user": f"@{self.request.user.username}", "food": "..."},
-                )
-                for verb in Verbs.CHOICES
-            ),
+            "verbs": _get_verbs(self.request.user.username),
         }
 
     def get_form(self, form_class=None):

@@ -1,0 +1,55 @@
+<form action="" method="POST" enctype="multipart/form-data">
+    {% include "moku/snippets/form_errors.jinja" %}
+    {% csrf_token %}
+    <div class="emoji-picker">
+        {% set current_emoji = form.emoji.value() or emoji[0][1][0] %}
+        {% for emoji_category in emoji %}
+            <details{% if current_emoji in emoji_category[1] %} open{% endif %}>
+                <summary>{{ emoji_category[0] }}</summary>
+                <ul class="emoji-picker-group">
+                    {% for emoji_choice in emoji_category[1] %}
+                        {% set emoji_label = emoji_choice|unemoji %}
+                        <li>
+                            <input
+                                    type="radio"
+                                    value="{{ emoji_choice }}"
+                                    name="emoji"
+                                    id="id_emoji_{{ emoji_label }}"
+                                    required
+                                    {% if emoji_choice == current_emoji %} checked{% endif %}
+                            >
+                            <label for="id_emoji_{{ emoji_label }}">{{ emoji_choice }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </details>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label for="id_food">{{ form.food.label }}</label>
+        <input type="text" name="food" id="id_food" value="{{ form.food.value() or "" }}" required aria-describedby="help_food">
+        <span class="help" id="help_food">{{ form.food.help_text }}</span>
+    </div>
+    <div class="field">
+        <label for="id_verb">{{ form.verb.label }}</label>
+        <select name="verb" id="id_verb">
+            {% for verb, verb_label in verbs %}
+                <option value="{{ verb }}"{% if form.verb.value() == verb %} selected{% endif %}>{{ verb_label }}</option>
+            {% endfor %}
+        </select>
+        <span class="help" id="help_verb">{{ form.verb.help_text }}</span>
+    </div>
+    <div class="field">
+        <label for="id_recipe">{{ form.recipe.label }}</label>
+        {{ form.recipe }}
+        <span class="help">{{ form.recipe.help_text }}</span>
+    </div>
+    <div class="field">
+        <label for="id_image">{{ form.image.label }}</label>
+        <div>{{ form.image }}</div>
+        <span class="help" id="help_image">{{ form.image.help_text }}</span>
+    </div>
+    <div class="field">
+        <button type="submit">{% trans %}post!{% endtrans %}</button>
+    </div>
+</form>

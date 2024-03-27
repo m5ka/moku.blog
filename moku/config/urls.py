@@ -5,7 +5,7 @@ from django.urls import include, path
 
 from moku.views.auth import LoginView, LogoutView
 from moku.views.blog import IndexBlogView
-from moku.views.post import FeedView
+from moku.views.post import EditPostview, FeedView
 from moku.views.recipe import (
     DeleteRecipeView,
     DeleteStepView,
@@ -34,6 +34,7 @@ urlpatterns = [
     path("blog", IndexBlogView.as_view(), name="blog.index"),
     path("privacy", PrivacyView.as_view(), name="privacy"),
     path("terms", TermsView.as_view(), name="terms"),
+    path("edit/<str:uuid>", EditPostview.as_view(), name="post.edit"),
     path("user/<str:username>", ProfileView.as_view(), name="profile"),
     path("user/<str:username>/json", UserJSONView.as_view(), name="json"),
     path("recipes", IndexRecipeView.as_view(), name="recipe.index"),

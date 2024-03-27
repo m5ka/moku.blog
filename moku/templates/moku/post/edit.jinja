@@ -1,0 +1,8 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content block">
+        <h2>{% trans time_ago=post.created_at|naturaltime %}editing post from {{ time_ago }}{% endtrans %}</h2>
+        {% include "moku/snippets/post_form.jinja" %}
+    </div>
+{% endblock content %}

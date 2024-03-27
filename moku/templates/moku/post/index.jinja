@@ -1,0 +1,26 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+<div class="grid-content">
+    <aside>
+        {% if request.user.is_authenticated %}
+            {% include "moku/snippets/post_form.jinja" %}
+        {% else %}
+            <p>{% trans %}want to post?{% endtrans %}</p>
+            <p>
+                {% with login_url=url('login'), signup_url=url('signup') %}
+                    {% trans %}<a href="{{ login_url }}">log in</a> or <a href="{{ signup_url }}">make an account</a>!{% endtrans %}
+                {% endwith %}
+            </p>
+        {% endif %}
+    </aside>
+    <main>
+        {% if not posts %}
+            <p>{% trans %}no posts yet...{% endtrans %} 🥱</p>
+        {% endif %}
+        {% for post in posts %}
+            {% include "moku/snippets/post.jinja" %}
+        {% endfor %}
+    </main>
+</div>
+{% endblock content %}

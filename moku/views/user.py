@@ -27,7 +27,7 @@ class EditProfileView(LoginRequiredMixin, FormView):
     page_title = gettext_lazy("edit profile")
 
     def form_valid(self, form):
-        if "avatar" in form.changed_data and form.instance.avatar is not None:
+        if "avatar" in form.changed_data and form.instance.avatar.name:
             form.instance.avatar = process_avatar_image(form.instance.avatar)
         form.save()
         messages.success(self.request, _("profile updated successfully!"))

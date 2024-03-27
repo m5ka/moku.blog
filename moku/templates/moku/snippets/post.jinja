@@ -9,7 +9,13 @@
     <div class="emoji">{{ post.emoji }}</div>
     <div class="body">
         <p class="food user-content">{{ post.text|safe }}</p>
-        <p class="metadata">{{ post.created_at|naturaltime }}</p>
+        <p class="metadata">
+            {{ post.created_at|naturaltime }}
+            {% if request.user.is_authenticated and request.user.id == post.created_by.id %}
+                ·
+                <a href="{{ url('post.edit', uuid=post.uuid) }}" class="subtle">edit</a>
+            {% endif %}
+        </p>
         {% if post.recipe %}
             <details class="recipe">
                 <summary>{% trans %}recipe{% endtrans %}</summary>
