@@ -1,7 +1,11 @@
-from django.forms import ModelForm
+from django.forms import Form, ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from moku.models import Post
+
+
+class DeletePostForm(Form):
+    pass
 
 
 class PostForm(ModelForm):

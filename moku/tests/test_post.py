@@ -12,4 +12,5 @@ def test_post(post: Post, re_uuid: re.Pattern):
     assert post.pk > 0
     assert post.pk == post.id
     assert re_uuid.match(post.uuid) is not None
-    assert post.text == '<a href="/user/jean">@jean</a> cooked sausage surprise'
+    assert post.html == '<a href="/user/jean">@jean</a> cooked sausage surprise'
+    assert post.plain_text == "@jean cooked sausage surprise"

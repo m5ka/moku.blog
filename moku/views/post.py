@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
-from moku.forms.post import PostForm
+from moku.forms.post import DeletePostForm, PostForm
 from moku.images import process_post_image
 from moku.models.post import Post
 from moku.models.recipe import Recipe
@@ -18,6 +20,35 @@ def _get_verbs(username):
         (verb[0], verb[1] % {"user": f"@{username}", "food": "..."})
         for verb in Verbs.CHOICES
     )
+
+
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    """Allows users to delete their previous posts."""
+
+    template_name = "moku/delete.jinja"
+    form_class = DeletePostForm
+
+    def form_valid(self, form):
+        self.post_object.delete()
+        messages.success(self.request, _("post deleted successfully!"))
+        return redirect("feed")
+
+    def get_context_data(self, **kwargs):
+        return {
+            **super().get_context_data(**kwargs),
+            "item": _("%(post_text)s from %(time_ago)s") % {
+                "post_text": self.post_object.plain_text,
+                "time_ago": naturaltime(self.post_object.created_at),
+            },
+            "back_url": reverse("post.edit", kwargs={"uuid": self.post_object.uuid}),
+        }
+
+    @cached_property
+    def post_object(self):
+        return get_object_or_404(Post, uuid=self.kwargs.get("uuid"))
+
+    def test_func(self):
+        return self.request.user.id == self.post_object.created_by.id
 
 
 class EditPostview(LoginRequiredMixin, UserPassesTestMixin, FormView):

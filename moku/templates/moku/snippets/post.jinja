@@ -8,7 +8,7 @@
     {% endif %}
     <div class="emoji">{{ post.emoji }}</div>
     <div class="body">
-        <p class="food user-content">{{ post.text|safe }}</p>
+        <p class="food user-content">{{ post.html|safe }}</p>
         <p class="metadata">
             {{ post.created_at|naturaltime }}
             {% if request.user.is_authenticated and request.user.id == post.created_by.id %}

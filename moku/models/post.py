@@ -86,10 +86,10 @@ class Post(models.Model):
     objects = PostManager()
 
     def __str__(self):
-        return f"{self.text} on {self.created_at}"
+        return f"{self.plain_text} on {self.created_at}"
 
     @property
-    def text(self):
+    def html(self):
         """
         The text of the post, with the post's chosen verb hydrated with food and user
         information.
@@ -99,5 +99,13 @@ class Post(models.Model):
                 f'<a href="{self.created_by.get_absolute_url()}">'
                 f"@{self.created_by.username}</a>"
             ),
+            "food": escape(self.food),
+        }
+
+    @property
+    def plain_text(self):
+        """The text of the post as plain text."""
+        return self.get_verb_display() % {
+            "user": f"@{self.created_by.username}",
             "food": escape(self.food),
         }

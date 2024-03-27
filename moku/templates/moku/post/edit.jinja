@@ -2,7 +2,16 @@
 
 {% block content %}
     <div class="content block">
-        <h2>{% trans time_ago=post.created_at|naturaltime %}editing post from {{ time_ago }}{% endtrans %}</h2>
+        <p class="mb">
+            👈 <a href="{{ url('feed') }}">back to feed</a>
+            <span class="mx">•</span>
+            ❌ <a href="{{ url('post.delete', uuid=post.uuid) }}">delete post</a>
+        </p>
+        <h2>
+            {% trans post_text=post.plain_text, time_ago=post.created_at|naturaltime %}
+            editing {{ post_text }} from {{ time_ago }}
+            {% endtrans %}
+        </h2>
         {% include "moku/snippets/post_form.jinja" %}
     </div>
 {% endblock content %}
