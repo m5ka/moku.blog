@@ -13,19 +13,19 @@
                 {% if profile.pronouns %}
                     <div>
                         <dt>{% trans %}pronouns{% endtrans %}</dt>
-                        <dd>{{ profile.pronouns }}</dd>
+                        <dd class="user-content">{{ profile.pronouns }}</dd>
                     </div>
                 {% endif %}
                 {% if profile.location %}
                     <div>
                         <dt>{% trans %}location{% endtrans %}</dt>
-                        <dd>{{ profile.location }}</dd>
+                        <dd class="user-content">{{ profile.location }}</dd>
                     </div>
                 {% endif %}
                 {% if profile.bio %}
                     <div class="double">
                         <dt>{% trans %}about me{% endtrans %}</dt>
-                        <dd class="block">
+                        <dd class="block user-content">
                             {{ profile.bio_as_html()|safe }}
                         </dd>
                     </div>

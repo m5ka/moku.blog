@@ -96,6 +96,10 @@ a:hover, button.logout:hover {
     text-decoration: wavy underline;
 }
 
+.user-content {
+    word-break: break-word;
+}
+
 .profile h2 {
     font-size: 1.8rem;
     font-weight: bold;
@@ -347,7 +351,6 @@ header nav ul {
 .grid-content main article {
     padding: .8rem 1.8rem;
     border-left: 4px solid var(--tangerine);
-    word-break: break-word;
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: 1.2rem;
