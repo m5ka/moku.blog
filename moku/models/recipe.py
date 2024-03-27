@@ -61,7 +61,7 @@ class RecipeStep(models.Model):
     )
     instructions = models.CharField(
         verbose_name=_("step instructions"),
-        max_length=128,
+        max_length=256,
         help_text=_(
             "the instructions for this step of the recipe. try to keep it clear and "
             "concise!"
