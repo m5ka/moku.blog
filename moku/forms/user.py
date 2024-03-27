@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField
 
-from moku.models.user import User, UserSettings
+from moku.models.user import User
 
 
 class UserForm(UserCreationForm):
@@ -35,7 +35,7 @@ class UserSettingsForm(forms.ModelForm):
     """Form for creating or updating user settings."""
 
     class Meta:
-        model = UserSettings
+        model = User
         fields = ("language",)
         labels = {"language": _("language")}
 

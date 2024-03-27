@@ -45,23 +45,12 @@ class EditSettingsView(LoginRequiredMixin, FormView):
     page_title = _("settings")
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        try:
-            form.save()
-        except IntegrityError:
-            messages.error(
-                self.request, _("uh oh. i think something went a little bit oopsie.")
-            )
-            return self.form_invalid(form)
+        form.save()
         messages.success(self.request, _("settings updated!"))
         return redirect("settings")
 
     def get_form(self):
-        if hasattr(self.request.user, "settings"):
-            return self.form_class(
-                instance=self.request.user.settings, **self.get_form_kwargs()
-            )
-        return super().get_form()
+        return self.form_class(instance=self.request.user, **self.get_form_kwargs())
 
 
 class ProfileView(View):

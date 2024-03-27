@@ -60,6 +60,13 @@ class User(AbstractUser):
         upload_to=user_avatar_filename,
         help_text=_("a little picture to show up on your profile."),
     )
+    language = models.CharField(
+        verbose_name=_("language"),
+        max_length=16,
+        choices=settings.LANGUAGES,
+        default="en",
+        help_text=_("what language do you want to use moku.blog in?"),
+    )
     last_seen_at = models.DateTimeField(
         verbose_name=_("last seen at"),
         blank=True,
@@ -85,18 +92,3 @@ class User(AbstractUser):
         if not self.bio:
             return ""
         return full_markdown(self.bio)
-
-
-class UserSettings(models.Model):
-    """Represents settings for a single user."""
-
-    user = models.OneToOneField(
-        "User", related_name="settings", on_delete=models.CASCADE
-    )
-    language = models.CharField(
-        verbose_name=_("language"),
-        max_length=16,
-        choices=settings.LANGUAGES,
-        default="en",
-        help_text=_("what language do you want to use moku.blog in?"),
-    )

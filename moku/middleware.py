@@ -8,6 +8,6 @@ class MokuLanguageMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.user.is_authenticated and hasattr(request.user, "settings"):
-            translation.activate(request.user.settings.language)
+        if request.user.is_authenticated:
+            translation.activate(request.user.language)
         return self.get_response(request)
