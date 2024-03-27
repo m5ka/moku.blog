@@ -1,6 +1,6 @@
 from django.apps import apps
 from django.conf import settings
-from mistune import HTMLRenderer, Markdown
+from mistune import HTMLRenderer, InlineParser, Markdown
 from mistune.plugins.formatting import strikethrough, subscript, superscript
 from mistune.plugins.url import url
 
@@ -44,9 +44,12 @@ def _username(md):
 
 full_markdown = Markdown(
     renderer=HTMLRenderer(),
+    inline=InlineParser(hard_wrap=True),
     plugins=[strikethrough, subscript, superscript, url, _username],
 )
 
 basic_markdown = Markdown(
-    renderer=HTMLRenderer(), plugins=[strikethrough, subscript, superscript, url]
+    renderer=HTMLRenderer(),
+    inline=InlineParser(hard_wrap=True),
+    plugins=[strikethrough, subscript, superscript, url],
 )

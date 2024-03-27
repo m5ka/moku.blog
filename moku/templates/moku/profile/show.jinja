@@ -25,7 +25,9 @@
                 {% if profile.bio %}
                     <div class="double">
                         <dt>{% trans %}about me{% endtrans %}</dt>
-                        <dd>{{ profile.bio }}</dd>
+                        <dd class="block">
+                            {{ profile.bio_as_html()|safe }}
+                        </dd>
                     </div>
                 {% endif %}
             </dl>

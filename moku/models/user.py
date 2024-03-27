@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from moku.markdown import full_markdown
 from moku.validators import validate_username_length, validate_username_regex
 
 
@@ -79,6 +80,11 @@ class User(AbstractUser):
     def email_confirmed(self):
         """Whether the user has confirmed their email address."""
         return self.email_confirmed_at is not None
+
+    def bio_as_html(self):
+        if not self.bio:
+            return ""
+        return full_markdown(self.bio)
 
 
 class UserSettings(models.Model):
