@@ -1,4 +1,4 @@
-name: test
+name: lint
 on:
   pull_request:
     branches:
@@ -6,25 +6,9 @@ on:
   push:
     branches:
       - 'main'
-env:
-  DEBUG: true
-  DATABASE_URL: 'postgres://postgres:postgres@localhost:5432/postgres'
-  DJANGO_DEBUG_TOOLBAR: false
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - '5432:5432'
     steps:
       - uses: actions/checkout@v4
       - name: install python
@@ -45,8 +29,8 @@ jobs:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: install dependencies
-        run: poetry install --with test
-      - name: check migrations
-        run: poetry run python manage.py makemigrations --check
-      - name: run tests
-        run: poetry run pytest
+        run: poetry install --with dev
+      - name: check linter and formatter
+        run: |
+          poetry run ruff check .
+          poetry run ruff format --check .
