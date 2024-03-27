@@ -38,6 +38,7 @@ DJANGO_SETTINGS_MODULE = "moku.config.settings"
 
 [tool.ruff]
 include = ["pyproject.toml", "moku/**/*.py", "manage.py"]
+exclude = ["moku/migrations/*.py"]
 line-length = 88
 indent-width = 4
 target-version = "py312"
