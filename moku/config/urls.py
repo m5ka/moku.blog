@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from moku.views.auth import LoginView, LogoutView
-from moku.views.post import FeedView, LatestPostJSONView
+from moku.views.post import FeedView
 from moku.views.recipe import (
     DeleteRecipeView,
     DeleteStepView,
@@ -14,7 +14,13 @@ from moku.views.recipe import (
     ShowRecipeView,
 )
 from moku.views.static import ChangelogView, PrivacyView, TermsView
-from moku.views.user import EditProfileView, EditSettingsView, ProfileView, SignupView
+from moku.views.user import (
+    EditProfileView,
+    EditSettingsView,
+    ProfileView,
+    SignupView,
+    UserJSONView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,7 +34,7 @@ urlpatterns = [
     path("privacy", PrivacyView.as_view(), name="privacy"),
     path("terms", TermsView.as_view(), name="terms"),
     path("user/<str:username>", ProfileView.as_view(), name="profile"),
-    path("user/<str:username>/json", LatestPostJSONView.as_view(), name="json"),
+    path("user/<str:username>/json", UserJSONView.as_view(), name="json"),
     path("recipes", IndexRecipeView.as_view(), name="recipe.index"),
     path("recipes/new", NewRecipeView.as_view(), name="recipe.new"),
     path("recipes/<str:uuid>", ShowRecipeView.as_view(), name="recipe.show"),

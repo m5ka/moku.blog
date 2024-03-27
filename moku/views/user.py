@@ -1,13 +1,20 @@
+import json
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db import IntegrityError
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as gettext_lazy
+from django.views.generic import View as BaseView
 
 from moku.forms.user import ProfileForm, UserForm, UserSettingsForm
 from moku.images import process_avatar_image
+from moku.models.post import Post
 from moku.models.user import User
 from moku.views.base import FormView, View
 
@@ -103,3 +110,51 @@ class SignupView(FormView):
         if self.request.user.is_authenticated:
             return redirect("feed")
         return super().get(request, *args, **kwargs)
+
+
+class UserJSONView(BaseView):
+    """
+    Renders information about a specific user as JSON, including their latest post.
+    """
+
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, username=kwargs.get("username"))
+        post = (
+            Post.objects.prefetch_related("recipe__steps")
+            .filter(created_by=user)
+            .order_by("-created_at")
+            .first()
+        )
+        if not post:
+            post_data = None
+        else:
+            post_data = {
+                "date": {
+                    "iso": str(post.created_at),
+                    "natural": naturaltime(post.created_at),
+                },
+                "text": post.get_verb_display()
+                % {"user": f"@{post.created_by.username}", "food": post.food},
+                "food": post.food,
+                "verb": {
+                    "id": post.verb,
+                    "pattern": post.get_verb_display() % {"user": "$1", "food": "$2"},
+                },
+                "image": f"{settings.SITE_ROOT_URL}{post.image.url}"
+                if post.image
+                else None,
+                "recipe": [step.instructions for step in post.recipe.steps.all()]
+                if post.recipe
+                else None,
+            }
+        user_data = {
+            "user": {
+                "username": user.username,
+                "avatar": f"{settings.SITE_ROOT_URL}{user.avatar.url}"
+                if user.avatar
+                else None,
+                "url": f"{settings.SITE_ROOT_URL}{user.get_absolute_url()}",
+                "latest_post": post_data,
+            }
+        }
+        return HttpResponse(json.dumps(user_data), content_type="application/json")

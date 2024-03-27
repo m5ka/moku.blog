@@ -1,13 +1,7 @@
-import json
-
-from django.conf import settings
 from django.contrib import messages
-from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.views.generic import View as BaseView
 
 from moku.constants import EMOJI_CATEGORIES, Verbs
 from moku.forms.post import PostForm
@@ -70,44 +64,3 @@ class FeedView(FormView):
                 created_by=self.request.user
             )
         return form
-
-
-class LatestPostJSONView(BaseView):
-    """Renders the latest post from a specific user as JSON."""
-
-    def get(self, request, *args, **kwargs):
-        post = (
-            Post.objects.prefetch_related("recipe__steps")
-            .filter(created_by__username=kwargs.get("username"))
-            .order_by("-created_at")
-            .first()
-        )
-        if not post:
-            return HttpResponse(
-                json.dumps({"post": None}), content_type="application/json"
-            )
-        post_data = {
-            "date": {
-                "iso": str(post.created_at),
-                "natural": naturaltime(post.created_at),
-            },
-            "text": post.get_verb_display()
-            % {"user": f"@{post.created_by.username}", "food": post.food},
-            "food": post.food,
-            "verb": {
-                "id": post.verb,
-                "pattern": post.get_verb_display() % {"user": "$1", "food": "$2"},
-            },
-            "image": f"{settings.SITE_ROOT_URL}{post.image.url}"
-            if post.image
-            else None,
-            "user": {
-                "username": post.created_by.username,
-                "url": f"{settings.SITE_ROOT_URL}{post.created_by.get_absolute_url()}",
-            },
-        }
-        if post.recipe:
-            post_data["recipe"] = [
-                step.instructions for step in post.recipe.steps.all()
-            ]
-        return HttpResponse(json.dumps(post_data), content_type="application/json")
