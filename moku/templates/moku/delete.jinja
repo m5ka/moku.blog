@@ -1,0 +1,14 @@
+{% extends "moku/base.jinja" %}
+
+{% block content %}
+    <div class="content block">
+        <h2>{% trans %}deleting {{ item }}{% endtrans %}</h2>
+        <p>{% trans %}are you sure you want to delete {{ item }}?{% endtrans %}</p>
+        <form action="" method="POST" class="logout">
+            {% csrf_token %}
+            👈 <a href="{{ back_url }}">no, take me back</a>
+            <span class="mx">•</span>
+            ❌ <button type="submit" class="logout">yes, delete it</button>
+        </form>
+    </div>
+{% endblock content %}

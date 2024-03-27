@@ -1,22 +1,33 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 
-from moku.forms.recipe import RecipeForm, RecipeStepForm
+from moku.forms.recipe import DeleteRecipeForm, RecipeForm, RecipeStepForm
 from moku.models.recipe import Recipe, RecipeStep
 from moku.views.base import FormView, View
 
 
-class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, View):
+class DeleteRecipeView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     """Deletes a recipe from the database if it belongs to the authenticated user."""
 
-    def get(self, request, *args, **kwargs):
+    template_name = "moku/delete.jinja"
+    form_class = DeleteRecipeForm
+
+    def form_valid(self, form):
         self.recipe.delete()
         messages.success(self.request, _("recipe deleted successfully!"))
         return redirect("recipe.index")
+
+    def get_context_data(self, **kwargs):
+        return {
+            **super().get_context_data(**kwargs),
+            "item": self.recipe.title,
+            "back_url": reverse("recipe.show", kwargs={"uuid": self.recipe.uuid}),
+        }
 
     @cached_property
     def recipe(self):
