@@ -31,7 +31,7 @@ msgstr "jan %(user)s li moku e %(food)s"
 #: moku/constants.py:15
 #, python-format
 msgid "%(user)s drank %(food)s"
-msgstr "jan %(user)s li moku e %(food)s"
+msgstr "jan %(user)s li moku e telo %(food)s"
 
 #: moku/constants.py:16
 #, python-format
@@ -46,7 +46,7 @@ msgstr "jan %(user)s li seli e %(food)s"
 #: moku/constants.py:18
 #, python-format
 msgid "%(user)s baked %(food)s"
-msgstr "jan %(user)s li seli e %(food)s"
+msgstr "jan %(user)s li seli e %(food)s lon poki seli"
 
 #: moku/constants.py:19
 #, python-format
