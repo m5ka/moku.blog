@@ -81,7 +81,11 @@ class EditPostview(LoginRequiredMixin, UserPassesTestMixin, FormView):
         }
 
     def get_form(self):
-        return self.form_class(instance=self.post_object, **self.get_form_kwargs())
+        form = self.form_class(instance=self.post_object, **self.get_form_kwargs())
+        form.fields["recipe"].queryset = Recipe.objects.filter(
+            created_by=self.request.user
+        )
+        return form
 
     @cached_property
     def post_object(self):
