@@ -29,7 +29,9 @@ class Recipe(models.Model):
     title = models.CharField(
         verbose_name=_("recipe title"),
         max_length=64,
-        help_text=_("give the recipe a title, just so you know what the recipe is for."),
+        help_text=_(
+            "give the recipe a title, just so you know what the recipe is for."
+        ),
     )
     created_by = models.ForeignKey(
         "User",

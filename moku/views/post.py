@@ -36,7 +36,8 @@ class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     def get_context_data(self, **kwargs):
         return {
             **super().get_context_data(**kwargs),
-            "item": _("%(post_text)s from %(time_ago)s") % {
+            "item": _("%(post_text)s from %(time_ago)s")
+            % {
                 "post_text": self.post_object.plain_text,
                 "time_ago": naturaltime(self.post_object.created_at),
             },
