@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-27 12:13+0000\n"
+"POT-Creation-Date: 2024-03-31 22:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: m5ka <m5ka@posteo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,23 +61,31 @@ msgstr "iaoa"
 msgid "savoury dishes"
 msgstr "mapo mami"
 
-#: moku/constants.py:117
+#: moku/constants.py:114
 msgid "sweet treats"
 msgstr "mapo iana"
 
-#: moku/constants.py:142
+#: moku/constants.py:141
 msgid "drinks"
 msgstr "mao"
 
-#: moku/constants.py:166
+#: moku/constants.py:167
 msgid "people"
 msgstr "haino"
 
-#: moku/constants.py:201
+#: moku/constants.py:202
 msgid "animals"
 msgstr "koia"
 
-#: moku/constants.py:250
+#: moku/constants.py:303
+msgid "insects & sea life"
+msgstr "hioi & iopa"
+
+#: moku/constants.py:336
+msgid "nature"
+msgstr "pana"
+
+#: moku/constants.py:420
 msgid "tools & things"
 msgstr "sako"
 
@@ -89,37 +97,37 @@ msgstr "ko laka ni oioa ki oioa pamo."
 msgid "your account has been deactivated."
 msgstr "ko haoa la noki ni kai."
 
-#: moku/forms/post.py:14 moku/models/post.py:43
+#: moku/forms/post.py:18 moku/models/post.py:43
 msgid "emoji"
 msgstr "kino nioi"
 
-#: moku/forms/post.py:15 moku/models/post.py:49
+#: moku/forms/post.py:19 moku/models/post.py:49
 msgid "verb"
 msgstr "mali oioa"
 
-#: moku/forms/post.py:16 moku/models/post.py:55
+#: moku/forms/post.py:20 moku/models/post.py:55
 msgid "food"
 msgstr "mapo"
 
-#: moku/forms/post.py:17 moku/models/post.py:65
-#: moku/templates/moku/snippets/post.jinja:15
+#: moku/forms/post.py:21 moku/models/post.py:65
+#: moku/templates/moku/snippets/post.jinja:21
 msgid "recipe"
 msgstr "haiki"
 
-#: moku/forms/post.py:18 moku/models/post.py:58
+#: moku/forms/post.py:22 moku/models/post.py:58
 msgid "image"
 msgstr "kino mapo"
 
-#: moku/forms/recipe.py:13 moku/models/recipe.py:30
+#: moku/forms/recipe.py:17 moku/models/recipe.py:30
 msgid "recipe title"
 msgstr "oioa haiki"
 
-#: moku/forms/user.py:18 moku/models/user.py:19
+#: moku/forms/user.py:18 moku/models/user.py:20
 #: moku/templates/moku/login.jinja:9
 msgid "username"
 msgstr "oioa"
 
-#: moku/forms/user.py:18 moku/models/user.py:30
+#: moku/forms/user.py:18 moku/models/user.py:31
 msgid "email address"
 msgstr "oioa na kamo hana"
 
@@ -131,44 +139,44 @@ msgstr "si kalo ni io sako sai ni kai."
 msgid "you must agree to the terms of use and privacy policy."
 msgstr "si mai la pali koko la pali pamo so kai."
 
-#: moku/forms/user.py:40 moku/models/user.py:91
+#: moku/forms/user.py:40 moku/models/user.py:64
 msgid "language"
 msgstr "lami"
 
-#: moku/forms/user.py:50 moku/models/user.py:57
+#: moku/forms/user.py:50 moku/models/user.py:58
 msgid "avatar"
 msgstr "kino haino"
 
-#: moku/forms/user.py:51 moku/models/user.py:40
+#: moku/forms/user.py:51 moku/models/user.py:41
 #: moku/templates/moku/profile/show.jinja:15
 msgid "pronouns"
 msgstr "oioa oioi"
 
-#: moku/forms/user.py:52 moku/models/user.py:46
+#: moku/forms/user.py:52 moku/models/user.py:47
 #: moku/templates/moku/profile/show.jinja:21
 msgid "location"
 msgstr "noli"
 
-#: moku/forms/user.py:53 moku/models/user.py:52
+#: moku/forms/user.py:53 moku/models/user.py:53
 #: moku/templates/moku/profile/show.jinja:27
 msgid "about me"
 msgstr "oisa nai"
 
 #: moku/models/blog.py:9
 msgid "title"
-msgstr ""
+msgstr "oioa"
 
 #: moku/models/blog.py:11
 msgid "the title of the blog post."
-msgstr ""
+msgstr "oioa iapa"
 
 #: moku/models/blog.py:14
 msgid "content"
-msgstr ""
+msgstr "mimi iapa"
 
 #: moku/models/blog.py:15
 msgid "the content of the blog post. markdown is allowed here."
-msgstr ""
+msgstr "mimi na iapa hina. ka lisa ni mali iapa mapo."
 
 #: moku/models/post.py:37 moku/models/recipe.py:24
 msgid "unique id"
@@ -210,77 +218,77 @@ msgstr "ka oiki lo pio hina ni iapa."
 msgid "the unique id that identifies this recipe."
 msgstr "ka hisa mi oioa mini ni haiki hina."
 
-#: moku/models/recipe.py:32
-msgid "give the recipe a title, just so you know the recipe is for."
+#: moku/models/recipe.py:33
+msgid "give the recipe a title, just so you know what the recipe is for."
 msgstr "si hana li haiki ni oioa."
 
-#: moku/models/recipe.py:57
+#: moku/models/recipe.py:59
 msgid "step id"
 msgstr "oioa mini na sia haiki"
 
-#: moku/models/recipe.py:60
+#: moku/models/recipe.py:62
 msgid "the unique id that identifies this step."
 msgstr "ka hisa mi oioa mini ni sia haiki hina."
 
-#: moku/models/recipe.py:63
+#: moku/models/recipe.py:65
 msgid "step instructions"
 msgstr "lami na sia haiki"
 
-#: moku/models/recipe.py:66
+#: moku/models/recipe.py:68
 msgid ""
 "the instructions for this step of the recipe. try to keep it clear and "
 "concise!"
 msgstr "si iapa ni mali na lo sia haiki hina. si kina hali."
 
-#: moku/models/recipe.py:71
+#: moku/models/recipe.py:73
 msgid "step number"
 msgstr "koka na sia haiki"
 
-#: moku/models/recipe.py:75
+#: moku/models/recipe.py:77
 msgid ""
 "which step in the recipe is this. this affects the order the recipe steps "
 "are shown."
-msgstr ""
+msgstr "ma haiki hina lo sia mia. ka mako ni koka iapa."
 
-#: moku/models/user.py:25
+#: moku/models/user.py:26
 msgid ""
 "this is the unique identifier you'll use to log in. it may only contain "
 "letters, numbers, hyphens, dashes and dots."
 msgstr ""
 
-#: moku/models/user.py:34
+#: moku/models/user.py:35
 msgid ""
 "this should be your email address. make sure it's valid and that you have "
 "access to it."
 msgstr ""
 
-#: moku/models/user.py:43
+#: moku/models/user.py:44
 msgid "what pronouns should people use when referring to you?"
 msgstr "ma lami ni oioa oioi mia mo haino lo io lami ni kai?"
 
-#: moku/models/user.py:49
+#: moku/models/user.py:50
 msgid "where in the world are you?"
 msgstr "ma sia noli mia ia kai?"
 
-#: moku/models/user.py:54
+#: moku/models/user.py:55
 msgid "write something about yourself!"
 msgstr "si iapa ni kai!"
 
-#: moku/models/user.py:60
+#: moku/models/user.py:61
 msgid "a little picture to show up on your profile."
 msgstr "ko kina lo pali haino kai ni kino oioi hina."
 
-#: moku/models/user.py:63
+#: moku/models/user.py:68
+msgid "what language do you want to use moku.blog in?"
+msgstr "ma maoa io lami mia lo laia?"
+
+#: moku/models/user.py:71
 msgid "last seen at"
 msgstr "pio hapi na mako laia"
 
-#: moku/models/user.py:66
+#: moku/models/user.py:74
 msgid "the last time this user accessed the site."
 msgstr "ka mako lo pio hina ni laia mo haino."
-
-#: moku/models/user.py:95
-msgid "what language do you want to use moku.blog in?"
-msgstr "ma maoa io lami mia lo laia?"
 
 #: moku/templates/moku/base.jinja:25 moku/templates/moku/base.jinja:35
 msgid "feed"
@@ -302,7 +310,7 @@ msgstr "haoa"
 msgid "log in"
 msgstr "mimi"
 
-#: moku/templates/moku/base.jinja:37 moku/views/user.py:93
+#: moku/templates/moku/base.jinja:37 moku/views/user.py:82
 msgid "sign up"
 msgstr "holo hono"
 
@@ -331,15 +339,61 @@ msgstr "hana kipi"
 msgid "no blog posts yet..."
 msgstr "ka koma iapa..."
 
-#: moku/templates/moku/feed.jinja:52
-msgid "post!"
-msgstr "si iapa!"
+#: moku/templates/moku/delete.jinja:5
+#, python-format
+msgid "deleting %(item)s"
+msgstr "haoa %(item)s"
 
-#: moku/templates/moku/feed.jinja:56
+#: moku/templates/moku/delete.jinja:6
+#, python-format
+msgid "are you sure you want to delete %(item)s?"
+msgstr "ma maoa io haoa ni %(item)s?"
+
+#: moku/templates/moku/error/403.jinja:5
+msgid "it doesn't look like you should be there!"
+msgstr "ko lisa sai lo hina!"
+
+#: moku/templates/moku/error/403.jinja:6
+msgid ""
+"take a look at the links at the top of the page to see if you can end up "
+"somewhere you're supposed to be. :)"
+msgstr "si kila la oioa lo haioa pali. mi hina ko poli io lia li pali lisa "
+"mo kai. :)"
+
+#: moku/templates/moku/error/404.jinja:5
+msgid "are you lost?"
+msgstr "ma haoa so kai?"
+
+#: moku/templates/moku/error/404.jinja:6
+msgid "it doesn't look like this is a page that exists, sorry."
+msgstr "ka koma ni pali na io maoa so kai sa laka."
+
+#: moku/templates/moku/error/404.jinja:7
+msgid ""
+"the links at the top of the page should help you get back to where you want "
+"to be!"
+msgstr ""
+"si kila la oioa na lo haioa pali li io lia li laia!"
+
+#: moku/templates/moku/error/404.jinja:8
+#, python-format
+msgid "do you think something might be wrong? send me an email at %(email)s"
+msgstr "ma laka lo laia so kai? si hana mi %(email)s li nai ni oioa."
+
+#: moku/templates/moku/login.jinja:13 moku/templates/moku/signup.jinja:19
+msgid "password"
+msgstr "oioa pamo"
+
+#: moku/templates/moku/post/edit.jinja:11
+#, python-format
+msgid "editing %(post_text)s from %(time_ago)s"
+msgstr ""
+
+#: moku/templates/moku/post/index.jinja:9
 msgid "want to post?"
 msgstr "ma maoa iapa?"
 
-#: moku/templates/moku/feed.jinja:59
+#: moku/templates/moku/post/index.jinja:12
 #, python-format
 msgid ""
 "<a href=\"%(login_url)s\">log in</a> or <a href=\"%(signup_url)s\">make an "
@@ -348,13 +402,10 @@ msgstr ""
 "si <a href=\"%(login_url)s\">mimi</a> oa <a href=\"%(signup_url)s\">holo "
 "hono</a>!"
 
-#: moku/templates/moku/feed.jinja:66 moku/templates/moku/profile/show.jinja:38
+#: moku/templates/moku/post/index.jinja:19
+#: moku/templates/moku/profile/show.jinja:40
 msgid "no posts yet..."
 msgstr "ka koma iapa..."
-
-#: moku/templates/moku/login.jinja:13 moku/templates/moku/signup.jinja:19
-msgid "password"
-msgstr "oioa pamo"
 
 #: moku/templates/moku/profile/edit.jinja:5
 msgid "back to my profile"
@@ -366,7 +417,7 @@ msgstr "li pali haino nai"
 msgid "update!"
 msgstr "si sioa!"
 
-#: moku/templates/moku/profile/show.jinja:33
+#: moku/templates/moku/profile/show.jinja:35
 #: moku/templates/moku/recipe/show.jinja:16
 msgid "edit"
 msgstr "oiki"
@@ -379,7 +430,7 @@ msgstr "oioa haiki"
 msgid "create!"
 msgstr "si haika!"
 
-#: moku/templates/moku/recipe/index.jinja:5 moku/views/recipe.py:104
+#: moku/templates/moku/recipe/index.jinja:5 moku/views/recipe.py:115
 msgid "new recipe"
 msgstr "haiki sioa"
 
@@ -438,6 +489,10 @@ msgstr ""
 msgid "sign up!"
 msgstr "si holo hono!"
 
+#: moku/templates/moku/snippets/post_form.jinja:53
+msgid "post!"
+msgstr "si iapa!"
+
 #: moku/validators.py:12
 msgid "Must be an emoji."
 msgstr "ko moi ni kino nioi."
@@ -458,47 +513,60 @@ msgstr ""
 msgid "welcome back, %(username)s!"
 msgstr "ka maio li kai %(username)s sa mai!"
 
-#: moku/views/post.py:28
+#: moku/views/post.py:33
+msgid "post deleted successfully!"
+msgstr "ka haoa ni iapa sa hali!"
+
+#: moku/views/post.py:39
+#, python-format
+msgid "%(post_text)s from %(time_ago)s"
+msgstr "%(post_text)s na la %(time_ago)s"
+
+#: moku/views/post.py:67 moku/views/post.py:113
 msgid "you can't add someone else's recipe to your post!"
 msgstr "ko lisa sai io iapa ia haiki na haino oiki mo kai!"
 
-#: moku/views/post.py:35
+#: moku/views/post.py:73
+msgid "your post was updated!"
+msgstr "ka sioa ni iapa sa hali!"
+
+#: moku/views/post.py:120
 msgid "your post was made!"
 msgstr "ka haika ni iapa sa hali!"
 
-#: moku/views/recipe.py:18
+#: moku/views/recipe.py:22
 msgid "recipe deleted successfully!"
 msgstr "ka haoa ni haiki sa hali!"
 
-#: moku/views/recipe.py:36
+#: moku/views/recipe.py:47
 msgid "sorry! you can only delete the last step."
 msgstr "ko lisa io haoa ni sia mino nana sa laka."
 
-#: moku/views/recipe.py:39
+#: moku/views/recipe.py:50
 msgid "step deleted!"
 msgstr "ka haoa ni sia haiki sa hali!"
 
-#: moku/views/recipe.py:66
+#: moku/views/recipe.py:77
 msgid "step updated!"
 msgstr "ka sioa ni sia haiki sa hali!"
 
-#: moku/views/recipe.py:88
+#: moku/views/recipe.py:99
 msgid "my recipes"
 msgstr "haiki nai"
 
-#: moku/views/recipe.py:111
+#: moku/views/recipe.py:122
 msgid "recipe made successfully! now you can start adding the steps."
 msgstr "ka haika ni haiki sa hali! ko poli io iaio ni sia mo kai."
 
-#: moku/views/recipe.py:138
+#: moku/views/recipe.py:149
 msgid "that's not yours!"
 msgstr "ko haiki na kai sai sa laka!"
 
-#: moku/views/recipe.py:143
+#: moku/views/recipe.py:154
 msgid "sorry! you can't add any more steps to this recipe."
 msgstr "ko poli sai io iaoa li haiki hina ni sia sioa sa laka."
 
-#: moku/views/recipe.py:149
+#: moku/views/recipe.py:160
 msgid "step added successfully!"
 msgstr "ka iaio ni sia haiki sa hali!"
 
@@ -510,21 +578,20 @@ msgstr "oiki na pali haino"
 msgid "profile updated successfully!"
 msgstr "ka sioa ni pali haino sa hali!"
 
-#: moku/views/user.py:53
-msgid "uh oh. i think something went a little bit oopsie."
-msgstr "haia. ko kaki lo mia mo mia sa laka nai."
-
-#: moku/views/user.py:56
+#: moku/views/user.py:49
 msgid "settings updated!"
 msgstr "ka sioa ni maoa kai sa hali!"
 
-#: moku/views/user.py:101
+#: moku/views/user.py:90
 msgid "sorry! someone else got to that username first."
 msgstr "ko kami ni oioa hina mo haino oiki sa laka."
 
-#: moku/views/user.py:105
+#: moku/views/user.py:94
 msgid "that's it! just log in, and you're ready to go."
 msgstr "poi! si iapa ni oioa ni oioa pamo li io oima ni lia kai ha."
+
+#~ msgid "uh oh. i think something went a little bit oopsie."
+#~ msgstr "haia. ko kaki lo mia mo mia sa laka nai."
 
 #~ msgid "changelog"
 #~ msgstr "pali oiki"

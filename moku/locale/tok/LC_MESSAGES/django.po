@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-27 12:13+0000\n"
+"POT-Creation-Date: 2024-03-31 22:16+0000\n"
 "PO-Revision-Date: 2024-03-26 18:28+0000\n"
 "Last-Translator: m5ka <m5ka@posteo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,23 +61,31 @@ msgstr "kili"
 msgid "savoury dishes"
 msgstr "moku"
 
-#: moku/constants.py:117
+#: moku/constants.py:114
 msgid "sweet treats"
 msgstr "suwi"
 
-#: moku/constants.py:142
+#: moku/constants.py:141
 msgid "drinks"
 msgstr "telo"
 
-#: moku/constants.py:166
+#: moku/constants.py:167
 msgid "people"
 msgstr "jan"
 
-#: moku/constants.py:201
+#: moku/constants.py:202
 msgid "animals"
 msgstr "soweli en akesi"
 
-#: moku/constants.py:250
+#: moku/constants.py:303
+msgid "insects & sea life"
+msgstr ""
+
+#: moku/constants.py:336
+msgid "nature"
+msgstr ""
+
+#: moku/constants.py:420
 msgid "tools & things"
 msgstr "ilo"
 
@@ -89,37 +97,37 @@ msgstr "nimi jan en nimi len ni li ike."
 msgid "your account has been deactivated."
 msgstr "sina ken ala lon linluwi ni."
 
-#: moku/forms/post.py:14 moku/models/post.py:43
+#: moku/forms/post.py:18 moku/models/post.py:43
 msgid "emoji"
 msgstr "sinpin"
 
-#: moku/forms/post.py:15 moku/models/post.py:49
+#: moku/forms/post.py:19 moku/models/post.py:49
 msgid "verb"
 msgstr "nimi"
 
-#: moku/forms/post.py:16 moku/models/post.py:55
+#: moku/forms/post.py:20 moku/models/post.py:55
 msgid "food"
 msgstr "moku"
 
-#: moku/forms/post.py:17 moku/models/post.py:65
-#: moku/templates/moku/snippets/post.jinja:15
+#: moku/forms/post.py:21 moku/models/post.py:65
+#: moku/templates/moku/snippets/post.jinja:21
 msgid "recipe"
 msgstr "nasin pali"
 
-#: moku/forms/post.py:18 moku/models/post.py:58
+#: moku/forms/post.py:22 moku/models/post.py:58
 msgid "image"
 msgstr "sitelen"
 
-#: moku/forms/recipe.py:13 moku/models/recipe.py:30
+#: moku/forms/recipe.py:17 moku/models/recipe.py:30
 msgid "recipe title"
 msgstr "nimi pi nasin pali"
 
-#: moku/forms/user.py:18 moku/models/user.py:19
+#: moku/forms/user.py:18 moku/models/user.py:20
 #: moku/templates/moku/login.jinja:9
 msgid "username"
 msgstr "nimi"
 
-#: moku/forms/user.py:18 moku/models/user.py:30
+#: moku/forms/user.py:18 moku/models/user.py:31
 msgid "email address"
 msgstr "nimi pi lon pana"
 
@@ -131,25 +139,25 @@ msgstr "o pilin e lanpan pi ilo ala."
 msgid "you must agree to the terms of use and privacy policy."
 msgstr "sina o lukin e lipu kepeken e lipu len o pilin pona tan tu ni."
 
-#: moku/forms/user.py:40 moku/models/user.py:91
+#: moku/forms/user.py:40 moku/models/user.py:64
 msgid "language"
 msgstr "toki"
 
-#: moku/forms/user.py:50 moku/models/user.py:57
+#: moku/forms/user.py:50 moku/models/user.py:58
 msgid "avatar"
 msgstr "sitelen jan"
 
-#: moku/forms/user.py:51 moku/models/user.py:40
+#: moku/forms/user.py:51 moku/models/user.py:41
 #: moku/templates/moku/profile/show.jinja:15
 msgid "pronouns"
 msgstr "nimi lili"
 
-#: moku/forms/user.py:52 moku/models/user.py:46
+#: moku/forms/user.py:52 moku/models/user.py:47
 #: moku/templates/moku/profile/show.jinja:21
 msgid "location"
 msgstr "ma"
 
-#: moku/forms/user.py:53 moku/models/user.py:52
+#: moku/forms/user.py:53 moku/models/user.py:53
 #: moku/templates/moku/profile/show.jinja:27
 msgid "about me"
 msgstr "mi sama ni"
@@ -210,33 +218,35 @@ msgstr "jan li ante e sitelen lon tenpo ni."
 msgid "the unique id that identifies this recipe."
 msgstr "nimi wan ni la jan li ken sona e nasin pali ni."
 
-#: moku/models/recipe.py:32
-msgid "give the recipe a title, just so you know the recipe is for."
+#: moku/models/recipe.py:33
+#, fuzzy
+#| msgid "give the recipe a title, just so you know the recipe is for."
+msgid "give the recipe a title, just so you know what the recipe is for."
 msgstr "o pana e nimi tawa nasin pali la sina sona e tan pi nasin pali ni."
 
-#: moku/models/recipe.py:57
+#: moku/models/recipe.py:59
 msgid "step id"
 msgstr "nimi wan pi kipisi pi nasin pali"
 
-#: moku/models/recipe.py:60
+#: moku/models/recipe.py:62
 msgid "the unique id that identifies this step."
 msgstr "nimi wan ni la jan li ken sona e kipisi ni pi nasin pali."
 
-#: moku/models/recipe.py:63
+#: moku/models/recipe.py:65
 msgid "step instructions"
 msgstr "toki pi nasin pali"
 
-#: moku/models/recipe.py:66
+#: moku/models/recipe.py:68
 msgid ""
 "the instructions for this step of the recipe. try to keep it clear and "
 "concise!"
 msgstr "o sitelen e nasin pi pali moku. o toki kepeken pona."
 
-#: moku/models/recipe.py:71
+#: moku/models/recipe.py:73
 msgid "step number"
 msgstr "nanpa kipisi"
 
-#: moku/models/recipe.py:75
+#: moku/models/recipe.py:77
 msgid ""
 "which step in the recipe is this. this affects the order the recipe steps "
 "are shown."
@@ -244,7 +254,7 @@ msgstr ""
 "kipisi pi nasin pali li jo e nanpa ni. ni la kipisi li ken sewi anu anpa "
 "sama wile sina."
 
-#: moku/models/user.py:25
+#: moku/models/user.py:26
 msgid ""
 "this is the unique identifier you'll use to log in. it may only contain "
 "letters, numbers, hyphens, dashes and dots."
@@ -252,39 +262,39 @@ msgstr ""
 "o pali e nimi wan. sina kepeken e ni la sina ken lon insa linluwi. lon insa "
 "nimi la nimi en nanpa en - en . taso li ken lon."
 
-#: moku/models/user.py:34
+#: moku/models/user.py:35
 msgid ""
 "this should be your email address. make sure it's valid and that you have "
 "access to it."
 msgstr "o sitelen e nimi sina pi lon pana. sina o ken lukin e lon ni."
 
-#: moku/models/user.py:43
+#: moku/models/user.py:44
 msgid "what pronouns should people use when referring to you?"
 msgstr "jan li wile toki sina la ona li kepeken e nimi lili seme?"
 
-#: moku/models/user.py:49
+#: moku/models/user.py:50
 msgid "where in the world are you?"
 msgstr "sina lon ma seme?"
 
-#: moku/models/user.py:54
+#: moku/models/user.py:55
 msgid "write something about yourself!"
 msgstr "o sitelen e waleja sina!"
 
-#: moku/models/user.py:60
+#: moku/models/user.py:61
 msgid "a little picture to show up on your profile."
 msgstr "sitelen lili ni li lon lipu jan sina."
 
-#: moku/models/user.py:63
+#: moku/models/user.py:68
+msgid "what language do you want to use moku.blog in?"
+msgstr "wile sina la linluwi ni li kepeken e toki seme?"
+
+#: moku/models/user.py:71
 msgid "last seen at"
 msgstr "tenpo pini lon"
 
-#: moku/models/user.py:66
+#: moku/models/user.py:74
 msgid "the last time this user accessed the site."
 msgstr "tenpo ni la jan ni li lukin e linluwi."
-
-#: moku/models/user.py:95
-msgid "what language do you want to use moku.blog in?"
-msgstr "wile sina la linluwi ni li kepeken e toki seme?"
 
 #: moku/templates/moku/base.jinja:25 moku/templates/moku/base.jinja:35
 msgid "feed"
@@ -306,7 +316,7 @@ msgstr "weka"
 msgid "log in"
 msgstr "insa"
 
-#: moku/templates/moku/base.jinja:37 moku/views/user.py:93
+#: moku/templates/moku/base.jinja:37 moku/views/user.py:82
 msgid "sign up"
 msgstr "pali e lipu jan"
 
@@ -335,15 +345,61 @@ msgstr "pana mani"
 msgid "no blog posts yet..."
 msgstr "sitelen li lon ala..."
 
-#: moku/templates/moku/feed.jinja:52
-msgid "post!"
-msgstr "o pali!"
+#: moku/templates/moku/delete.jinja:5
+#, python-format
+msgid "deleting %(item)s"
+msgstr ""
 
-#: moku/templates/moku/feed.jinja:56
+#: moku/templates/moku/delete.jinja:6
+#, python-format
+msgid "are you sure you want to delete %(item)s?"
+msgstr ""
+
+#: moku/templates/moku/error/403.jinja:5
+msgid "it doesn't look like you should be there!"
+msgstr ""
+
+#: moku/templates/moku/error/403.jinja:6
+msgid ""
+"take a look at the links at the top of the page to see if you can end up "
+"somewhere you're supposed to be. :)"
+msgstr ""
+
+#: moku/templates/moku/error/404.jinja:5
+#, fuzzy
+#| msgid "want to post?"
+msgid "are you lost?"
+msgstr "sina wile pali e sitelen?"
+
+#: moku/templates/moku/error/404.jinja:6
+msgid "it doesn't look like this is a page that exists, sorry."
+msgstr ""
+
+#: moku/templates/moku/error/404.jinja:7
+msgid ""
+"the links at the top of the page should help you get back to where you want "
+"to be!"
+msgstr ""
+
+#: moku/templates/moku/error/404.jinja:8
+#, python-format
+msgid "do you think something might be wrong? send me an email at %(email)s"
+msgstr ""
+
+#: moku/templates/moku/login.jinja:13 moku/templates/moku/signup.jinja:19
+msgid "password"
+msgstr "nimi len"
+
+#: moku/templates/moku/post/edit.jinja:11
+#, python-format
+msgid "editing %(post_text)s from %(time_ago)s"
+msgstr ""
+
+#: moku/templates/moku/post/index.jinja:9
 msgid "want to post?"
 msgstr "sina wile pali e sitelen?"
 
-#: moku/templates/moku/feed.jinja:59
+#: moku/templates/moku/post/index.jinja:12
 #, python-format
 msgid ""
 "<a href=\"%(login_url)s\">log in</a> or <a href=\"%(signup_url)s\">make an "
@@ -352,13 +408,10 @@ msgstr ""
 "o <a href=\"%(login_url)s\">insa</a> anu <a href=\"%(signup_url)s\">pali e "
 "lipu jan</a>!"
 
-#: moku/templates/moku/feed.jinja:66 moku/templates/moku/profile/show.jinja:38
+#: moku/templates/moku/post/index.jinja:19
+#: moku/templates/moku/profile/show.jinja:40
 msgid "no posts yet..."
 msgstr "sitelen li lon ala..."
-
-#: moku/templates/moku/login.jinja:13 moku/templates/moku/signup.jinja:19
-msgid "password"
-msgstr "nimi len"
 
 #: moku/templates/moku/profile/edit.jinja:5
 msgid "back to my profile"
@@ -370,7 +423,7 @@ msgstr "o tawa lipu jan mi"
 msgid "update!"
 msgstr "o ante!"
 
-#: moku/templates/moku/profile/show.jinja:33
+#: moku/templates/moku/profile/show.jinja:35
 #: moku/templates/moku/recipe/show.jinja:16
 msgid "edit"
 msgstr "ante"
@@ -383,7 +436,7 @@ msgstr "toki pi nasin pali"
 msgid "create!"
 msgstr "o pali!"
 
-#: moku/templates/moku/recipe/index.jinja:5 moku/views/recipe.py:104
+#: moku/templates/moku/recipe/index.jinja:5 moku/views/recipe.py:115
 msgid "new recipe"
 msgstr "nasin pali sin"
 
@@ -446,6 +499,10 @@ msgstr ""
 msgid "sign up!"
 msgstr "pali e lipu jan"
 
+#: moku/templates/moku/snippets/post_form.jinja:53
+msgid "post!"
+msgstr "o pali!"
+
 #: moku/validators.py:12
 msgid "Must be an emoji."
 msgstr "ni o sinpin."
@@ -467,47 +524,64 @@ msgstr ""
 msgid "welcome back, %(username)s!"
 msgstr "jan %(username)s o toki!"
 
-#: moku/views/post.py:28
+#: moku/views/post.py:33
+#, fuzzy
+#| msgid "recipe deleted successfully!"
+msgid "post deleted successfully!"
+msgstr "nasin pali li weka!"
+
+#: moku/views/post.py:39
+#, python-format
+msgid "%(post_text)s from %(time_ago)s"
+msgstr ""
+
+#: moku/views/post.py:67 moku/views/post.py:113
 msgid "you can't add someone else's recipe to your post!"
 msgstr "sina ken ala pana e sitelen kepeken nasin pali pi jan ante!"
 
-#: moku/views/post.py:35
+#: moku/views/post.py:73
+#, fuzzy
+#| msgid "your post was made!"
+msgid "your post was updated!"
+msgstr "sitelen sina li lon!"
+
+#: moku/views/post.py:120
 msgid "your post was made!"
 msgstr "sitelen sina li lon!"
 
-#: moku/views/recipe.py:18
+#: moku/views/recipe.py:22
 msgid "recipe deleted successfully!"
 msgstr "nasin pali li weka!"
 
-#: moku/views/recipe.py:36
+#: moku/views/recipe.py:47
 msgid "sorry! you can only delete the last step."
 msgstr "sina ken weka e kipisi pini taso."
 
-#: moku/views/recipe.py:39
+#: moku/views/recipe.py:50
 msgid "step deleted!"
 msgstr "kipisi pi nasin pali li weka!"
 
-#: moku/views/recipe.py:66
+#: moku/views/recipe.py:77
 msgid "step updated!"
 msgstr "kipisi pi nasin pali li ante!"
 
-#: moku/views/recipe.py:88
+#: moku/views/recipe.py:99
 msgid "my recipes"
 msgstr "nasin pali mi"
 
-#: moku/views/recipe.py:111
+#: moku/views/recipe.py:122
 msgid "recipe made successfully! now you can start adding the steps."
 msgstr "nasin pali li lon! ni la sina ken sitelen e nasin."
 
-#: moku/views/recipe.py:138
+#: moku/views/recipe.py:149
 msgid "that's not yours!"
 msgstr "sina jo ala e ni!"
 
-#: moku/views/recipe.py:143
+#: moku/views/recipe.py:154
 msgid "sorry! you can't add any more steps to this recipe."
 msgstr "nasin pali ni li ken ala kama suli kin."
 
-#: moku/views/recipe.py:149
+#: moku/views/recipe.py:160
 msgid "step added successfully!"
 msgstr "kipisi pi nasin pali li lon!"
 
@@ -519,21 +593,20 @@ msgstr "ante pi lipu jan"
 msgid "profile updated successfully!"
 msgstr "lipu jan li ante!"
 
-#: moku/views/user.py:53
-msgid "uh oh. i think something went a little bit oopsie."
-msgstr "a! ike li kama."
-
-#: moku/views/user.py:56
+#: moku/views/user.py:49
 msgid "settings updated!"
 msgstr "wile sina li ante!"
 
-#: moku/views/user.py:101
+#: moku/views/user.py:90
 msgid "sorry! someone else got to that username first."
 msgstr "jan ante li jo e nimi ni."
 
-#: moku/views/user.py:105
+#: moku/views/user.py:94
 msgid "that's it! just log in, and you're ready to go."
 msgstr "pona a! o sitelen e nimi sin ni la sina ken lon insa."
+
+#~ msgid "uh oh. i think something went a little bit oopsie."
+#~ msgstr "a! ike li kama."
 
 #~ msgid "changelog"
 #~ msgstr "lipu ante"
