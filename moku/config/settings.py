@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import environ
+import sentry_sdk
 from django.utils.translation import gettext_lazy as _
 
 # Initial environment
@@ -181,3 +182,8 @@ if DEBUG:
 else:
     RECAPTCHA_PUBLIC_KEY = env.str("RECAPTCHA_PUBLIC_KEY")
     RECAPTCHA_PRIVATE_KEY = env.str("RECAPTCHA_PRIVATE_KEY")
+
+# Sentry integration
+# https://docs.sentry.io/platforms/python/integrations/django/
+if not DEBUG:
+    sentry_sdk.init(env.str("SENTRY_DSN"), enable_tracing=True)
