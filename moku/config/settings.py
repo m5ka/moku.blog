@@ -13,7 +13,7 @@ env.read_env(BASE_DIR / ".env")
 DEBUG = env.bool("DEBUG", default=False)
 
 # Secret key
-SECRET_KEY = env.str("SECRET_KEY", default="insecure-keyboard-cat-abcd1234")
+SECRET_KEY = env.str("SECRET_KEY")
 
 # Application definition
 INSTALLED_APPS = [
