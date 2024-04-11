@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
@@ -15,11 +14,7 @@ class LoginView(View, BaseLoginView):
     template_name = "moku/login.jinja"
     form_class = AuthenticationForm
     page_title = "log in"
-
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect(self.get_success_url())
-        return super().get(request, *args, **kwargs)
+    redirect_authenticated_user = True
 
     def get_success_url(self):
         if self.request.user.is_authenticated:
@@ -28,7 +23,7 @@ class LoginView(View, BaseLoginView):
                 _("welcome back, %(username)s!")
                 % {"username": self.request.user.username},
             )
-        return self.request.GET.get("next", reverse_lazy("feed"))
+        return reverse_lazy("feed")
 
 
 class LogoutView(BaseLogoutView):
