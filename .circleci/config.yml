@@ -70,7 +70,7 @@ workflows:
       - test
       - semantic-release/with_existing_config:
           name: semantic release
-          additional_packages: @google/semantic-release-replace-plugin
+          additional_packages: "@google/semantic-release-replace-plugin"
           requires:
             - lint
             - test
