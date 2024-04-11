@@ -470,6 +470,11 @@ footer nav ul {
     column-gap: 1.2rem;
 }
 
+footer nav ul li.version {
+    color: var(--charcoal);
+    font-size: 1.4rem;
+}
+
 footer nav ul li a {
     font-size: 1.4rem;
     color: var(--charcoal);

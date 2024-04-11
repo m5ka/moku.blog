@@ -1,0 +1,80 @@
+version: 2.1
+orbs:
+  semantic-release: trustedshops-public/semantic-release@6.0.0
+jobs:
+  lint:
+    docker:
+      - image: cimg/python:3.12.2
+    steps:
+      - checkout
+      - restore_cache:
+          key: venv-dev-{{ checksum "poetry.lock" }}
+      - run:
+          name: set up venv
+          command: |
+            poetry config virtualenvs.create true --local
+            poetry config virtualenvs.in-project true --local
+      - run:
+          name: install dependencies
+          command: poetry install --with dev
+      - save_cache:
+          key: venv-dev-{{ checksum "poetry.lock" }}
+          paths:
+            - .venv
+      - run:
+          name: run linter
+          command: |
+            poetry run ruff check .
+            poetry run ruff format --check .
+  test:
+    docker:
+      - image: cimg/python:3.12.2
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: moku
+          POSTGRES_DB: moku
+    steps:
+      - checkout
+      - restore_cache:
+          key: venv-test-{{ checksum "poetry.lock" }}
+      - run:
+          name: set up venv
+          command: |
+            poetry config virtualenvs.create true --local
+            poetry config virtualenvs.in-project true --local
+      - run:
+          name: install dependencies
+          command: poetry install --with test
+      - save_cache:
+          key: venv-test-{{ checksum "poetry.lock" }}
+          paths:
+            - .venv
+      - run:
+          name: wait for postgres
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: check migrations
+          command: poetry run python manage.py makemigrations --check
+          environment:
+            DATABASE_URL: postgres://moku@localhost:5432/moku
+      - run:
+          name: run tests
+          command: poetry run pytest
+          environment:
+            DATABASE_URL: postgres://moku@localhost:5432/moku
+workflows:
+  version: 2
+  main:
+    jobs:
+      - lint
+      - test
+      - semantic-release/with_existing_config:
+          name: semantic release
+          additional_packages: @google/semantic-release-replace-plugin
+          requires:
+            - lint
+            - test
+          filter:
+            branches:
+              only:
+                - main

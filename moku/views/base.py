@@ -3,6 +3,8 @@ import random
 from django.conf import settings
 from django.views import generic
 
+from moku import __version__ as site_version
+
 
 class View(generic.TemplateView):
     """Defines a common set of data to be passed to the template context."""
@@ -17,6 +19,7 @@ class View(generic.TemplateView):
                 ["🍔", "🍕", "🍟", "🥪", "🥘", "🍰", "🍻", "🧁", "🍞", "🥯", "🥐"]
             ),
             "site_root_url": settings.SITE_ROOT_URL,
+            "site_version": site_version,
             "page_title": self.page_title,
         }
 
