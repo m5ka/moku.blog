@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "django_jinja",
     "django_jinja.contrib._humanize",
     "django_recaptcha",
-    "moku",
+    "moku.config.apps.MokuConfig",
 ]
 
 # Middleware
